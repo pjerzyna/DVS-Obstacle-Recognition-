@@ -1,13 +1,14 @@
 # Event-Based Perception for High-Speed Drone Maneuvers on Raspberry Pi
 
 ### 🚀 Cel projektu
-Celem projektu jest opracowanie i implementacja wydajnego potoku przetwarzania danych z kamery zdarzeniowej Prophesee’s GenX320 Metavision na platformie Raspberry Pi 5. Projekt skupia się na utrzymaniu precyzyjnej percepcji podczas gwałtownych manewrów drona, gdzie tradycyjne systemy wizyjne zawodzą z powodu rozmycia obrazu. Chcemy podejść do tego projektu od storny tematu Contrast Maximization ....
+Celem projektu jest opracowanie i implementacja wydajnego potoku przetwarzania danych z kamery zdarzeniowej Prophesee’s GenX320 Metavision na platformie Raspberry Pi 5. Projekt skupia się na utrzymaniu precyzyjnej percepcji podczas imitacji gwałtownych manewrów drona, gdzie tradycyjne systemy wizyjne zawodzą z powodu rozmycia obrazu. Chcemy podejść do tego projektu od storny tematu Contrast Maximization.
   
 
 ### 🧠 Wyzwanie: Hardware vs. High-Speed Data
 Głównym problemem badawczym jest ograniczona przepustowość urządzenia wbudowanego w starciu z surowym strumieniem danych.
-*   **Dataset M3ED:** Wykorzystuje wysoką rozdzielczość (1280x720) i wyłączony kontroler ERC, co generuje do **200 milionów zdarzeń na sekundę (MEPS)**.
-*   **Ograniczenia RPi:** Konieczność drastycznej optymalizacji, odszumiania oraz stosowania asynchronicznych reprezentacji danych, aby osiągnąć działanie w czasie rzeczywistym.
+*   **Dataset M3ED [NIE]:** Wykorzystuje wysoką rozdzielczość (1280x720) i wyłączony kontroler ERC, co generuje do **200 milionów zdarzeń na sekundę (MEPS)**.
+*   **Dataset DAVIS 240C [TAK]:** Niższa rozdzielczość zdjęć (240x180) przemówiła na korzyść w wykorzystaniu tego zbioru danych
+*   **Ograniczenia RPi:** Konieczność drastycznej optymalizacji, aby urządzenie osiągnęło jak najlepszy wynik
 
 ---
 
