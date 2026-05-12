@@ -28,9 +28,14 @@ tj. Wykorzystanie danych z żyroskopu do odróżnienia ruchu własnego drona (*e
 
 ---
 
-### 📊 Demonstracja
-Badania (np. Mueggler'a) potwierdzają, że kamery zdarzeniowe potrafią śledzić ruch z mikrosekundową latencją. Ten projekt udowadnia, że jest to możliwe do zrealizowania na taniej, mobilnej platformie obliczeniowej.
+## 📊 Demonstracja
 
-Projekt zakłada demonstrację działania systemu w czasie rzeczywistym na Raspberry Pi z podłączoną kamerką:
+Badania (np. Muegglera) potwierdzają, że kamery zdarzeniowe potrafią śledzić ruch z mikrosekundową latencją. Ten projekt udowadnia, że jest to możliwe do zrealizowania na (relatywnie) **taniej, mobilnej platformie obliczeniowej**.
 
 
+### 🔗 Zasoby projektu
+
+| Zasób | Opis | Link |
+| :--- | :--- | :--- |
+| **DVS** | Dokumentacja postępu prac (Google Drive) | [Otwórz folder](https://docs.google.com/document/d/1JVSYr9W3rMijzj9mugauywRmXaeJ3GHVQlDzZBNm6CM/edit?usp=sharing) |
+| **Źródła** | Materiały źródłowe | [Zobacz pliki](https://drive.google.com/drive/folders/1pNTtwfE_gR4jPu4br1rLfwvJslzubs4B?dmr=1&ec=wgc-drive-module-goto) |
