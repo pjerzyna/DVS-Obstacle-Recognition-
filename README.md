@@ -7,7 +7,8 @@ Celem projektu jest opracowanie i implementacja wydajnego potoku przetwarzania d
 ### 🧠 Wyzwanie: Hardware vs. High-Speed Data
 Głównym problemem badawczym jest ograniczona przepustowość urządzenia wbudowanego w starciu z surowym strumieniem danych.
 *   **Dataset M3ED [NIE]:** Wykorzystuje wysoką rozdzielczość (1280x720) i wyłączony kontroler ERC, co generuje do **200 milionów zdarzeń na sekundę (MEPS)**.
-*   **Dataset DAVIS 240C [TAK]:** Niższa rozdzielczość zdjęć (240x180) przemówiła na korzyść w wykorzystaniu tego zbioru danych
+*   **Dataset DAVIS 240C [?TAK?]:** Niższa rozdzielczość zdjęć (240x180) przemówiła na korzyść w wykorzystaniu tego zbioru danych
+*   **Dataset indoor_forward_5_davis_with_gt [?TAK?]:** Dane są zebrane kamerą zamontowaną na dronie, co może przemówić na korzyść  
 *   **Ograniczenia RPi:** Konieczność drastycznej optymalizacji, aby urządzenie osiągnęło jak najlepszy wynik
 
 ---
