@@ -5,6 +5,7 @@ indoor_forward_5_davis_with_gt/
 data_in/
 
 # Ignore virtual environment and generated files
+.vscode/
 venv/
 __pycache__/
 
