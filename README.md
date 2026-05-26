@@ -25,3 +25,7 @@ Badania (np. Muegglera) potwierdzają, że kamery zdarzeniowe potrafią śledzi�
 | :--- | :--- | :--- |
 | **DVS** | Dokumentacja postępu prac (Google Drive) | [Otwórz folder](https://docs.google.com/document/d/1JVSYr9W3rMijzj9mugauywRmXaeJ3GHVQlDzZBNm6CM/edit?usp=sharing) |
 | **Źródła** | Materiały źródłowe | [Zobacz pliki](https://drive.google.com/drive/folders/1pNTtwfE_gR4jPu4br1rLfwvJslzubs4B?dmr=1&ec=wgc-drive-module-goto) |
+
+
+
+### trzeba doinstalwoac biblioteki h5py oraz jakies inne fikumiku, zeby polaczyc z metavision_sdk itp.

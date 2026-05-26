@@ -2,7 +2,11 @@
 shapes_rotation/
 shapes_rotation.zip
 indoor_forward_5_davis_with_gt/
+data_in/
 
 # Ignore virtual environment and generated files
 venv/
 __pycache__/
+
+# My previous implementations
+brick-a-brack/
