@@ -4,6 +4,8 @@
 
 
 # TO TRZEBA ZMIENIC 
+# NAJNOWSZY PLIK TO "wykryty_ruch.bin"
+
 
 Celem projektu jest opracowanie i implementacja wydajnego potoku przetwarzania danych z kamery zdarzeniowej Prophesee’s GenX320 Metavision na platformie Raspberry Pi 5. Projekt skupia się na utrzymaniu precyzyjnej percepcji podczas imitacji gwałtownych manewrów drona, gdzie tradycyjne systemy wizyjne zawodzą z powodu rozmycia obrazu. Chcemy podejść do tego projektu od storny tematu Contrast Maximization.
   
