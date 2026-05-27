@@ -18,7 +18,7 @@ który jest aktualizowany na ekranie w czasie rzeczywistym.
 # =====================================================================
 # TRYB PLIKU (PC): Podaj ścieżkę do pliku .raw, np. "data_in/data.raw"
 # TRYB NA ŻYWO (Raspberry Pi 5): Ustaw INPUT_SOURCE = "" (pusty string wykryje kamerę USB)
-INPUT_SOURCE = "data_in/data.raw"  
+INPUT_SOURCE = "data_in/naprawiony_ruch.raw"  
 
 DT_US = 40000  # Wielkość okna: 40 milisekund (idealne dla ludzkiego ruchu)
 width, height = 320, 320 # Rozdzielczość sensora GenX320
