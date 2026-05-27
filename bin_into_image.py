@@ -1,10 +1,17 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
+"""
+Na ten moment ten plik jest dedykowany do odtwarzania przefiltrowanego strumienia zdarzeń, który został zapisany 
+w formacie binarnym przez ssh_detector_new.py. Zamiast odczytywać dane z kamery USB, wczytujemy je z pliku .bin,  
+który zawiera już przefiltrowane zdarzenia (bez hot pixels). Podejście z plikiem typu .bin nie jest standardowe dla
+Metavision, w przyszłości planowane jest przejście na natywny format .raw
+"""
+
 # =====================================================================
 # CONFIGURATION
 # =====================================================================
-INPUT_SOURCE = "data_in/wykryty_ruch.bin"  # lub .raw, zależnie jak nazwałeś plik
+INPUT_SOURCE = "data_in/wykryty_ruch.bin"  
 DT_US = 40000  # Wielkość okna: 40 ms
 width, height = 320, 320
 

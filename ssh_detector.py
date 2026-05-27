@@ -11,8 +11,9 @@ Każda paczka zdarzeń jest filtrowana. Jeśli wykryjemy wystarczającą liczbę
 INPUT_SOURCE = ""  
 DT_US = 40000  
 width, height = 320, 320
+OUTPUT_FILE = "wykryty_ruch.bin"
 
-print("Uruchamianie produkcyjnego detektora SSH...")
+print("Uruchamianie produkcyjnego trackera SSH...")
 try:
     mv_iterator = EventsIterator(input_path=INPUT_SOURCE, delta_t=DT_US)
 except Exception as e:
@@ -26,12 +27,18 @@ try:
         i_ll_biases = device.get_i_ll_biases()
         i_ll_biases.set("bias_diff_on", 45)
         i_ll_biases.set("bias_diff_off", 45)
-        print("-> Czułość sprzętowa zaaplikowana (Szum wycięty u źródła)!")
+        print("-> Czułość sprzętowa zaaplikowana pomyślnie!")
 except Exception as bias_err:
     print(f"[OSTRZEŻENIE] Problem z biases: {bias_err}")
 
-print("\n[SYSTEM MONITOROWANIA EMBEDDED AKTYWNY]")
-print("Wyjście z programu: Ctrl+C\n")
+print(f"-> Przygotowanie binarnego pliku wyjściowego: {OUTPUT_FILE}")
+raw_file = open(OUTPUT_FILE, "wb")
+
+print("\n[SYSTEM TRACKINGU I REJESTRACJI AKTYWNY]")
+print("Wciśnij Ctrl+C, aby zakończyć i zapisać.\n")
+
+prev_cx, prev_cy = None, None
+MOVEMENT_THRESHOLD = 3.0  
 
 try:
     for evs in mv_iterator:
@@ -41,38 +48,56 @@ try:
         x_raw = evs['x'].astype(int)
         y_raw = evs['y'].astype(int)
         
-        # 1. Mapa zdarzeń
+        # Filtracja (Twój sprawdzony kod)
         event_map = np.zeros((height, width), dtype=np.uint8)
         event_map[y_raw, x_raw] = 1
         
-        # 2. Lekki, 4-kierunkowy filtr sąsiedztwa (idealny pod RPi 5 CPU)
         neighbors = (
             np.roll(event_map,  1, axis=0) +
             np.roll(event_map, -1, axis=0) +
             np.roll(event_map,  1, axis=1) +
             np.roll(event_map, -1, axis=1)
         )
-        clean_map = (event_map == 1) & (neighbors >= 2)
+        clean_mask_2d = (event_map == 1) & (neighbors >= 2)
+        clean_mask_events = clean_mask_2d[y_raw, x_raw]
         
-        y_clean, x_clean = np.where(clean_map)
+        x_clean = x_raw[clean_mask_events]
+        y_clean = y_raw[clean_mask_events]
         active_points = len(x_clean)
         
-        # 3. Kryterium detekcji (wartość 150 punktów strukturalnych)
-        # Sekwencja \033[K na końcu czyści stare znaki w terminalu
+        # =================================================================
+        # ZAPIS BINARNY (Szybki i bezpieczny dla RPi)
+        # =================================================================
+        if active_points > 0:
+            raw_file.write(evs[clean_mask_events].tobytes())
+        
+        # Logika wyświetlania w konsoli SSH
         if active_points > 150:
-            min_x, max_x = np.min(x_clean), np.max(x_clean)
-            min_y, max_y = np.min(y_clean), np.max(y_clean)
-            obj_width = max_x - min_x
-            obj_height = max_y - min_y
+            cx = int(np.mean(x_clean))
+            cy = int(np.mean(y_clean))
+            direction_str = "STACJONARNY"
+            if prev_cx is not None and prev_cy is not None:
+                dx = cx - prev_cx
+                dy = cy - prev_cy
+                if abs(dx) > abs(dy) and abs(dx) > MOVEMENT_THRESHOLD:
+                    direction_str = "W PRAWO" if dx > 0 else "W LEWO"
+                elif abs(dy) > abs(dx) and abs(dy) > MOVEMENT_THRESHOLD:
+                    direction_str = "W DÓŁ" if dy > 0 else "W GÓRĘ"
             
-            print(f"\r\033[K[ALERT - DETEKCJA] Obiekt aktywny! Punkty: {active_points:5d} | Rozmiar: {obj_width:3d}x{obj_height:3d} px", end="", flush=True)
+            prev_cx, prev_cy = cx, cy
+            print(f"\r\033[K[NAGRYWANIE] Środek: ({cx:3d}, {cy:3d}) | Kierunek: {direction_str:11s} | Punkty: {active_points:5d}", end="", flush=True)
         else:
+            prev_cx, prev_cy = None, None
             print(f"\r\033[K[STATUS] Scena czysta (Zdarzenia tła: {np.sum(event_map):4d})", end="", flush=True)
 
 except KeyboardInterrupt:
-    print("\n\nZamykanie systemu detekcji przez użytkownika.")
+    print("\n\nZamykanie strumienia...")
 
 finally:
+    if 'raw_file' in locals():
+        raw_file.flush()
+        raw_file.close()
+        print(f"-> SUKCES: Dane zapisano w: {OUTPUT_FILE}")
+        
     if 'mv_iterator' in locals():
-        del mv_iterator 
-    print("Zasoby zwolnione. Kamera gotowa do kolejnych zadań.")
+        del mv_iterator
