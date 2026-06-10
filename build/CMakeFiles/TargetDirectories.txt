@@ -1,0 +1,3 @@
+/home/sterydy/DVS_setup/optical_avoidance/build/CMakeFiles/optical_avoidance.dir
+/home/sterydy/DVS_setup/optical_avoidance/build/CMakeFiles/edit_cache.dir
+/home/sterydy/DVS_setup/optical_avoidance/build/CMakeFiles/rebuild_cache.dir
