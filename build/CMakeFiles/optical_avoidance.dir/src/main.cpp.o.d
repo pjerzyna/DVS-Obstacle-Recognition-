@@ -1,5 +1,5 @@
 CMakeFiles/optical_avoidance.dir/src/main.cpp.o: \
- /home/sterydy/DVS_setup/optical_avoidance/src/main.cpp \
+ /home/sterydy/projekt/ver2/optical_avoidance/src/main.cpp \
  /usr/include/stdc-predef.h /usr/include/c++/12/atomic \
  /usr/include/c++/12/bits/atomic_base.h \
  /usr/include/aarch64-linux-gnu/c++/12/bits/c++config.h \
@@ -211,10 +211,11 @@ CMakeFiles/optical_avoidance.dir/src/main.cpp.o: \
  /usr/include/c++/12/fstream /usr/include/c++/12/bits/codecvt.h \
  /usr/include/aarch64-linux-gnu/c++/12/bits/basic_file.h \
  /usr/include/aarch64-linux-gnu/c++/12/bits/c++io.h \
- /usr/include/c++/12/bits/fstream.tcc \
- /usr/local/include/metavision/sdk/stream/camera.h \
- /usr/include/c++/12/filesystem /usr/include/c++/12/bits/fs_fwd.h \
- /usr/include/c++/12/bits/fs_path.h /usr/include/c++/12/locale \
+ /usr/include/c++/12/bits/fstream.tcc /usr/include/c++/12/mutex \
+ /usr/include/c++/12/bits/std_mutex.h \
+ /usr/include/c++/12/bits/unique_lock.h /usr/include/c++/12/filesystem \
+ /usr/include/c++/12/bits/fs_fwd.h /usr/include/c++/12/bits/fs_path.h \
+ /usr/include/c++/12/locale \
  /usr/include/c++/12/bits/locale_facets_nonio.h \
  /usr/include/aarch64-linux-gnu/c++/12/bits/time_members.h \
  /usr/include/aarch64-linux-gnu/c++/12/bits/messages_members.h \
@@ -228,6 +229,7 @@ CMakeFiles/optical_avoidance.dir/src/main.cpp.o: \
  /usr/include/c++/12/bits/allocated_ptr.h \
  /usr/include/c++/12/ext/aligned_buffer.h \
  /usr/include/c++/12/bits/fs_dir.h /usr/include/c++/12/bits/fs_ops.h \
+ /usr/local/include/metavision/sdk/stream/camera.h \
  /usr/include/c++/12/functional /usr/include/c++/12/bits/std_function.h \
  /usr/include/c++/12/unordered_map /usr/include/c++/12/bits/hashtable.h \
  /usr/include/c++/12/bits/hashtable_policy.h \
@@ -312,9 +314,7 @@ CMakeFiles/optical_avoidance.dir/src/main.cpp.o: \
  /usr/include/opencv4/opencv2/core/operations.hpp \
  /usr/include/opencv4/opencv2/core/cvstd.inl.hpp \
  /usr/include/c++/12/complex \
- /usr/include/opencv4/opencv2/core/utility.hpp /usr/include/c++/12/mutex \
- /usr/include/c++/12/bits/std_mutex.h \
- /usr/include/c++/12/bits/unique_lock.h \
+ /usr/include/opencv4/opencv2/core/utility.hpp \
  /usr/include/opencv4/opencv2/core/optim.hpp \
  /usr/include/opencv4/opencv2/core/ovx.hpp \
  /usr/include/opencv4/opencv2/core/cvdef.h \
@@ -352,7 +352,14 @@ CMakeFiles/optical_avoidance.dir/src/main.cpp.o: \
  /usr/local/include/metavision/sdk/stream/camera_exception.h \
  /usr/local/include/metavision/sdk/base/utils/error_utils.h \
  /usr/local/include/metavision/sdk/stream/camera_error_code.h \
- /home/sterydy/DVS_setup/optical_avoidance/include/bias_configurator.hpp \
- /home/sterydy/DVS_setup/optical_avoidance/include/neighborhood_filter.hpp \
- /home/sterydy/DVS_setup/optical_avoidance/include/obstacle_tracker.hpp \
- /home/sterydy/DVS_setup/optical_avoidance/include/ttc_estimator.hpp
+ /home/sterydy/projekt/ver2/optical_avoidance/include/bias_configurator.hpp \
+ /home/sterydy/projekt/ver2/optical_avoidance/include/detection_pipeline.hpp \
+ /home/sterydy/projekt/ver2/optical_avoidance/include/adaptive_thresholds.hpp \
+ /home/sterydy/projekt/ver2/optical_avoidance/include/obstacle_tracker.hpp \
+ /home/sterydy/projekt/ver2/optical_avoidance/include/sensor_config.hpp \
+ /home/sterydy/projekt/ver2/optical_avoidance/include/frame_slicer.hpp \
+ /home/sterydy/projekt/ver2/optical_avoidance/include/neighborhood_filter.hpp \
+ /usr/include/c++/12/deque /usr/include/c++/12/bits/stl_deque.h \
+ /usr/include/c++/12/bits/deque.tcc \
+ /home/sterydy/projekt/ver2/optical_avoidance/include/ttc_estimator.hpp \
+ /home/sterydy/projekt/ver2/optical_avoidance/include/output_paths.hpp

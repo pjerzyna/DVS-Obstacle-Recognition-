@@ -3,23 +3,25 @@
 #include <metavision/hal/facilities/i_ll_biases.h>
 #include <iostream>
 
-void oa::BiasConfigurator::apply(Metavision::Camera& camera) {
+bool oa::BiasConfigurator::apply(Metavision::Camera& camera) {
     try {
-        // Pobieramy dostęp do interfejsu niskopoziomowego urządzenia HAL
-        Metavision::I_LL_Biases* biases = camera.get_device().get_facility<Metavision::I_LL_Biases>();
+        Metavision::I_LL_Biases* biases =
+            camera.get_device().get_facility<Metavision::I_LL_Biases>();
 
-        if (biases != nullptr) {
-            std::cout << "-> Wykryto sensor GenX320 w C++. Konfiguracja czułości..." << std::endl;
-
-            // Nadpisujemy parametry sprzętowe komparatorów (dokładnie tak jak w Pythonie)
-            biases->set("bias_diff_on", 45);
-            biases->set("bias_diff_off", 45);
-
-            std::cout << "-> Parametry Biases (45/45) zaaplikowane pomyślnie!" << std::endl;
-        } else {
-            std::cerr << "[OSTRZEŻENIE] Nie znaleziono interfejsu biases w tym urządzeniu." << std::endl;
+        if (biases == nullptr) {
+            std::cerr << "[OSTRZEŻENIE] Nie znaleziono interfejsu biases w tym urządzeniu.\n";
+            return false;
         }
+
+        std::cout << "-> Wykryto sensor GenX320. Konfiguracja czułości...\n";
+        biases->set("bias_diff_on",  DIFF_ON_VALUE);
+        biases->set("bias_diff_off", DIFF_OFF_VALUE);
+        std::cout << "-> Parametry Biases (" << DIFF_ON_VALUE << "/" << DIFF_OFF_VALUE
+                  << ") zaaplikowane pomyślnie!\n";
+        return true;
     } catch (const std::exception& e) {
-        std::cerr << "[BŁĄD BIASES] Nie udało się skonfigurować rejestrów sprzętowych: " << e.what() << std::endl;
+        std::cerr << "[BŁĄD BIASES] Nie udało się skonfigurować rejestrów sprzętowych: "
+                  << e.what() << "\n";
+        return false;
     }
 }

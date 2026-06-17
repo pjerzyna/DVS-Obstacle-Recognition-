@@ -1,4 +1,4 @@
-# Install script for directory: /home/sterydy/DVS_setup/optical_avoidance
+# Install script for directory: /home/sterydy/projekt/ver2/optical_avoidance
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -50,5 +50,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/sterydy/DVS_setup/optical_avoidance/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/sterydy/projekt/ver2/optical_avoidance/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

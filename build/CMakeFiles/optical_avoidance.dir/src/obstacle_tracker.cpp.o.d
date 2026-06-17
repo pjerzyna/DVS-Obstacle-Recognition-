@@ -1,7 +1,7 @@
 CMakeFiles/optical_avoidance.dir/src/obstacle_tracker.cpp.o: \
- /home/sterydy/DVS_setup/optical_avoidance/src/obstacle_tracker.cpp \
+ /home/sterydy/projekt/ver2/optical_avoidance/src/obstacle_tracker.cpp \
  /usr/include/stdc-predef.h \
- /home/sterydy/DVS_setup/optical_avoidance/include/obstacle_tracker.hpp \
+ /home/sterydy/projekt/ver2/optical_avoidance/include/obstacle_tracker.hpp \
  /usr/local/include/metavision/sdk/base/events/event_cd.h \
  /usr/local/include/metavision/sdk/base/events/event2d.h \
  /usr/include/c++/12/cstdint \
@@ -161,4 +161,6 @@ CMakeFiles/optical_avoidance.dir/src/obstacle_tracker.cpp.o: \
  /usr/local/include/metavision/sdk/base/utils/detail/struct_pack.h \
  /usr/local/include/metavision/sdk/base/utils/timestamp.h \
  /usr/local/include/metavision/sdk/base/events/detail/event_traits.h \
- /usr/include/c++/12/cstddef /usr/include/c++/12/limits
+ /usr/include/c++/12/cstddef \
+ /home/sterydy/projekt/ver2/optical_avoidance/include/sensor_config.hpp \
+ /usr/include/c++/12/limits

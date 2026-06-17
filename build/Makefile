@@ -57,10 +57,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/sterydy/DVS_setup/optical_avoidance
+CMAKE_SOURCE_DIR = /home/sterydy/projekt/ver2/optical_avoidance
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/sterydy/DVS_setup/optical_avoidance/build
+CMAKE_BINARY_DIR = /home/sterydy/projekt/ver2/optical_avoidance/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,9 +87,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/sterydy/DVS_setup/optical_avoidance/build/CMakeFiles /home/sterydy/DVS_setup/optical_avoidance/build//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/sterydy/projekt/ver2/optical_avoidance/build/CMakeFiles /home/sterydy/projekt/ver2/optical_avoidance/build//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/sterydy/DVS_setup/optical_avoidance/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/sterydy/projekt/ver2/optical_avoidance/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -129,6 +129,46 @@ optical_avoidance/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/optical_avoidance.dir/build.make CMakeFiles/optical_avoidance.dir/build
 .PHONY : optical_avoidance/fast
 
+#=============================================================================
+# Target rules for targets named replay_viewer
+
+# Build rule for target.
+replay_viewer: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 replay_viewer
+.PHONY : replay_viewer
+
+# fast build rule for target.
+replay_viewer/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/replay_viewer.dir/build.make CMakeFiles/replay_viewer.dir/build
+.PHONY : replay_viewer/fast
+
+src/adaptive_thresholds.o: src/adaptive_thresholds.cpp.o
+.PHONY : src/adaptive_thresholds.o
+
+# target to build an object file
+src/adaptive_thresholds.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/optical_avoidance.dir/build.make CMakeFiles/optical_avoidance.dir/src/adaptive_thresholds.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/replay_viewer.dir/build.make CMakeFiles/replay_viewer.dir/src/adaptive_thresholds.cpp.o
+.PHONY : src/adaptive_thresholds.cpp.o
+
+src/adaptive_thresholds.i: src/adaptive_thresholds.cpp.i
+.PHONY : src/adaptive_thresholds.i
+
+# target to preprocess a source file
+src/adaptive_thresholds.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/optical_avoidance.dir/build.make CMakeFiles/optical_avoidance.dir/src/adaptive_thresholds.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/replay_viewer.dir/build.make CMakeFiles/replay_viewer.dir/src/adaptive_thresholds.cpp.i
+.PHONY : src/adaptive_thresholds.cpp.i
+
+src/adaptive_thresholds.s: src/adaptive_thresholds.cpp.s
+.PHONY : src/adaptive_thresholds.s
+
+# target to generate assembly for a file
+src/adaptive_thresholds.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/optical_avoidance.dir/build.make CMakeFiles/optical_avoidance.dir/src/adaptive_thresholds.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/replay_viewer.dir/build.make CMakeFiles/replay_viewer.dir/src/adaptive_thresholds.cpp.s
+.PHONY : src/adaptive_thresholds.cpp.s
+
 src/bias_configurator.o: src/bias_configurator.cpp.o
 .PHONY : src/bias_configurator.o
 
@@ -152,6 +192,60 @@ src/bias_configurator.s: src/bias_configurator.cpp.s
 src/bias_configurator.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/optical_avoidance.dir/build.make CMakeFiles/optical_avoidance.dir/src/bias_configurator.cpp.s
 .PHONY : src/bias_configurator.cpp.s
+
+src/detection_pipeline.o: src/detection_pipeline.cpp.o
+.PHONY : src/detection_pipeline.o
+
+# target to build an object file
+src/detection_pipeline.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/optical_avoidance.dir/build.make CMakeFiles/optical_avoidance.dir/src/detection_pipeline.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/replay_viewer.dir/build.make CMakeFiles/replay_viewer.dir/src/detection_pipeline.cpp.o
+.PHONY : src/detection_pipeline.cpp.o
+
+src/detection_pipeline.i: src/detection_pipeline.cpp.i
+.PHONY : src/detection_pipeline.i
+
+# target to preprocess a source file
+src/detection_pipeline.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/optical_avoidance.dir/build.make CMakeFiles/optical_avoidance.dir/src/detection_pipeline.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/replay_viewer.dir/build.make CMakeFiles/replay_viewer.dir/src/detection_pipeline.cpp.i
+.PHONY : src/detection_pipeline.cpp.i
+
+src/detection_pipeline.s: src/detection_pipeline.cpp.s
+.PHONY : src/detection_pipeline.s
+
+# target to generate assembly for a file
+src/detection_pipeline.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/optical_avoidance.dir/build.make CMakeFiles/optical_avoidance.dir/src/detection_pipeline.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/replay_viewer.dir/build.make CMakeFiles/replay_viewer.dir/src/detection_pipeline.cpp.s
+.PHONY : src/detection_pipeline.cpp.s
+
+src/frame_slicer.o: src/frame_slicer.cpp.o
+.PHONY : src/frame_slicer.o
+
+# target to build an object file
+src/frame_slicer.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/optical_avoidance.dir/build.make CMakeFiles/optical_avoidance.dir/src/frame_slicer.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/replay_viewer.dir/build.make CMakeFiles/replay_viewer.dir/src/frame_slicer.cpp.o
+.PHONY : src/frame_slicer.cpp.o
+
+src/frame_slicer.i: src/frame_slicer.cpp.i
+.PHONY : src/frame_slicer.i
+
+# target to preprocess a source file
+src/frame_slicer.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/optical_avoidance.dir/build.make CMakeFiles/optical_avoidance.dir/src/frame_slicer.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/replay_viewer.dir/build.make CMakeFiles/replay_viewer.dir/src/frame_slicer.cpp.i
+.PHONY : src/frame_slicer.cpp.i
+
+src/frame_slicer.s: src/frame_slicer.cpp.s
+.PHONY : src/frame_slicer.s
+
+# target to generate assembly for a file
+src/frame_slicer.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/optical_avoidance.dir/build.make CMakeFiles/optical_avoidance.dir/src/frame_slicer.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/replay_viewer.dir/build.make CMakeFiles/replay_viewer.dir/src/frame_slicer.cpp.s
+.PHONY : src/frame_slicer.cpp.s
 
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
@@ -183,6 +277,7 @@ src/neighborhood_filter.o: src/neighborhood_filter.cpp.o
 # target to build an object file
 src/neighborhood_filter.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/optical_avoidance.dir/build.make CMakeFiles/optical_avoidance.dir/src/neighborhood_filter.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/replay_viewer.dir/build.make CMakeFiles/replay_viewer.dir/src/neighborhood_filter.cpp.o
 .PHONY : src/neighborhood_filter.cpp.o
 
 src/neighborhood_filter.i: src/neighborhood_filter.cpp.i
@@ -191,6 +286,7 @@ src/neighborhood_filter.i: src/neighborhood_filter.cpp.i
 # target to preprocess a source file
 src/neighborhood_filter.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/optical_avoidance.dir/build.make CMakeFiles/optical_avoidance.dir/src/neighborhood_filter.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/replay_viewer.dir/build.make CMakeFiles/replay_viewer.dir/src/neighborhood_filter.cpp.i
 .PHONY : src/neighborhood_filter.cpp.i
 
 src/neighborhood_filter.s: src/neighborhood_filter.cpp.s
@@ -199,6 +295,7 @@ src/neighborhood_filter.s: src/neighborhood_filter.cpp.s
 # target to generate assembly for a file
 src/neighborhood_filter.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/optical_avoidance.dir/build.make CMakeFiles/optical_avoidance.dir/src/neighborhood_filter.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/replay_viewer.dir/build.make CMakeFiles/replay_viewer.dir/src/neighborhood_filter.cpp.s
 .PHONY : src/neighborhood_filter.cpp.s
 
 src/obstacle_tracker.o: src/obstacle_tracker.cpp.o
@@ -207,6 +304,7 @@ src/obstacle_tracker.o: src/obstacle_tracker.cpp.o
 # target to build an object file
 src/obstacle_tracker.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/optical_avoidance.dir/build.make CMakeFiles/optical_avoidance.dir/src/obstacle_tracker.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/replay_viewer.dir/build.make CMakeFiles/replay_viewer.dir/src/obstacle_tracker.cpp.o
 .PHONY : src/obstacle_tracker.cpp.o
 
 src/obstacle_tracker.i: src/obstacle_tracker.cpp.i
@@ -215,6 +313,7 @@ src/obstacle_tracker.i: src/obstacle_tracker.cpp.i
 # target to preprocess a source file
 src/obstacle_tracker.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/optical_avoidance.dir/build.make CMakeFiles/optical_avoidance.dir/src/obstacle_tracker.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/replay_viewer.dir/build.make CMakeFiles/replay_viewer.dir/src/obstacle_tracker.cpp.i
 .PHONY : src/obstacle_tracker.cpp.i
 
 src/obstacle_tracker.s: src/obstacle_tracker.cpp.s
@@ -223,7 +322,59 @@ src/obstacle_tracker.s: src/obstacle_tracker.cpp.s
 # target to generate assembly for a file
 src/obstacle_tracker.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/optical_avoidance.dir/build.make CMakeFiles/optical_avoidance.dir/src/obstacle_tracker.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/replay_viewer.dir/build.make CMakeFiles/replay_viewer.dir/src/obstacle_tracker.cpp.s
 .PHONY : src/obstacle_tracker.cpp.s
+
+src/output_paths.o: src/output_paths.cpp.o
+.PHONY : src/output_paths.o
+
+# target to build an object file
+src/output_paths.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/optical_avoidance.dir/build.make CMakeFiles/optical_avoidance.dir/src/output_paths.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/replay_viewer.dir/build.make CMakeFiles/replay_viewer.dir/src/output_paths.cpp.o
+.PHONY : src/output_paths.cpp.o
+
+src/output_paths.i: src/output_paths.cpp.i
+.PHONY : src/output_paths.i
+
+# target to preprocess a source file
+src/output_paths.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/optical_avoidance.dir/build.make CMakeFiles/optical_avoidance.dir/src/output_paths.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/replay_viewer.dir/build.make CMakeFiles/replay_viewer.dir/src/output_paths.cpp.i
+.PHONY : src/output_paths.cpp.i
+
+src/output_paths.s: src/output_paths.cpp.s
+.PHONY : src/output_paths.s
+
+# target to generate assembly for a file
+src/output_paths.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/optical_avoidance.dir/build.make CMakeFiles/optical_avoidance.dir/src/output_paths.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/replay_viewer.dir/build.make CMakeFiles/replay_viewer.dir/src/output_paths.cpp.s
+.PHONY : src/output_paths.cpp.s
+
+src/replay_viewer.o: src/replay_viewer.cpp.o
+.PHONY : src/replay_viewer.o
+
+# target to build an object file
+src/replay_viewer.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/replay_viewer.dir/build.make CMakeFiles/replay_viewer.dir/src/replay_viewer.cpp.o
+.PHONY : src/replay_viewer.cpp.o
+
+src/replay_viewer.i: src/replay_viewer.cpp.i
+.PHONY : src/replay_viewer.i
+
+# target to preprocess a source file
+src/replay_viewer.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/replay_viewer.dir/build.make CMakeFiles/replay_viewer.dir/src/replay_viewer.cpp.i
+.PHONY : src/replay_viewer.cpp.i
+
+src/replay_viewer.s: src/replay_viewer.cpp.s
+.PHONY : src/replay_viewer.s
+
+# target to generate assembly for a file
+src/replay_viewer.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/replay_viewer.dir/build.make CMakeFiles/replay_viewer.dir/src/replay_viewer.cpp.s
+.PHONY : src/replay_viewer.cpp.s
 
 src/ttc_estimator.o: src/ttc_estimator.cpp.o
 .PHONY : src/ttc_estimator.o
@@ -231,6 +382,7 @@ src/ttc_estimator.o: src/ttc_estimator.cpp.o
 # target to build an object file
 src/ttc_estimator.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/optical_avoidance.dir/build.make CMakeFiles/optical_avoidance.dir/src/ttc_estimator.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/replay_viewer.dir/build.make CMakeFiles/replay_viewer.dir/src/ttc_estimator.cpp.o
 .PHONY : src/ttc_estimator.cpp.o
 
 src/ttc_estimator.i: src/ttc_estimator.cpp.i
@@ -239,6 +391,7 @@ src/ttc_estimator.i: src/ttc_estimator.cpp.i
 # target to preprocess a source file
 src/ttc_estimator.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/optical_avoidance.dir/build.make CMakeFiles/optical_avoidance.dir/src/ttc_estimator.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/replay_viewer.dir/build.make CMakeFiles/replay_viewer.dir/src/ttc_estimator.cpp.i
 .PHONY : src/ttc_estimator.cpp.i
 
 src/ttc_estimator.s: src/ttc_estimator.cpp.s
@@ -247,6 +400,7 @@ src/ttc_estimator.s: src/ttc_estimator.cpp.s
 # target to generate assembly for a file
 src/ttc_estimator.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/optical_avoidance.dir/build.make CMakeFiles/optical_avoidance.dir/src/ttc_estimator.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/replay_viewer.dir/build.make CMakeFiles/replay_viewer.dir/src/ttc_estimator.cpp.s
 .PHONY : src/ttc_estimator.cpp.s
 
 # Help Target
@@ -258,9 +412,19 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... optical_avoidance"
+	@echo "... replay_viewer"
+	@echo "... src/adaptive_thresholds.o"
+	@echo "... src/adaptive_thresholds.i"
+	@echo "... src/adaptive_thresholds.s"
 	@echo "... src/bias_configurator.o"
 	@echo "... src/bias_configurator.i"
 	@echo "... src/bias_configurator.s"
+	@echo "... src/detection_pipeline.o"
+	@echo "... src/detection_pipeline.i"
+	@echo "... src/detection_pipeline.s"
+	@echo "... src/frame_slicer.o"
+	@echo "... src/frame_slicer.i"
+	@echo "... src/frame_slicer.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
@@ -270,6 +434,12 @@ help:
 	@echo "... src/obstacle_tracker.o"
 	@echo "... src/obstacle_tracker.i"
 	@echo "... src/obstacle_tracker.s"
+	@echo "... src/output_paths.o"
+	@echo "... src/output_paths.i"
+	@echo "... src/output_paths.s"
+	@echo "... src/replay_viewer.o"
+	@echo "... src/replay_viewer.i"
+	@echo "... src/replay_viewer.s"
 	@echo "... src/ttc_estimator.o"
 	@echo "... src/ttc_estimator.i"
 	@echo "... src/ttc_estimator.s"

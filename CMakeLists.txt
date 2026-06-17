@@ -1,18 +1,10 @@
 cmake_minimum_required(VERSION 3.16)
 project(optical_avoidance LANGUAGES CXX)
 
-# ─────────────────────────────────────────────
-#  Standardy i flagi kompilacji
-# ─────────────────────────────────────────────
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
-# Profil Release: agresywna optymalizacja na Cortex-A76 (RPi 5)
-# -mcpu=cortex-a76     → instrukcje specyficzne dla rdzenia RPi 5
-# -mfpu=neon-fp-armv8  → włącza jednostkę NEON (SIMD, 128-bit)
-# -ffast-math          → relaxed IEEE 754, pozwala auto-wektoryzować float
-# -funroll-loops       → rozwijanie pętli wewnętrznych filtra sąsiedztwa
 if(NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE Release)
 endif()
@@ -21,67 +13,69 @@ add_compile_options(
     -Wall -Wextra -Wpedantic
     $<$<CONFIG:Release>:-O3>
     $<$<CONFIG:Release>:-mcpu=cortex-a76>
-    # $<$<CONFIG:Release>:-mfpu=neon-fp-armv8>
-    $<$<CONFIG:Release>:-ffast-math>
     $<$<CONFIG:Release>:-funroll-loops>
     $<$<CONFIG:Release>:-fomit-frame-pointer>
 )
 
-# ─────────────────────────────────────────────
-#  OpenMP (wielowątkowość na 4 rdzeniach)
-# ─────────────────────────────────────────────
 find_package(OpenMP REQUIRED)
 
-# ─────────────────────────────────────────────
-#  Metavision / OpenEB SDK
-#  Ścieżki domyślne po kompilacji OpenEB na RPi OS Bookworm
-# ─────────────────────────────────────────────
 find_package(MetavisionSDK
     COMPONENTS base core stream
     REQUIRED
 )
-# Alternatywna ścieżka jeśli SDK jest w /usr/local:
-# list(APPEND CMAKE_PREFIX_PATH "/usr/local")
 
-# ─────────────────────────────────────────────
-#  OpenCV (operacje macierzowe 320×320)
-# ─────────────────────────────────────────────
-find_package(OpenCV 4 REQUIRED
-    COMPONENTS core imgproc
-)
+find_package(OpenCV REQUIRED COMPONENTS core imgproc highgui)
 
-# ─────────────────────────────────────────────
-#  Źródła projektu
-# ─────────────────────────────────────────────
-set(SOURCES
-    src/main.cpp
-    src/bias_configurator.cpp
+set(ALGO_SOURCES
     src/neighborhood_filter.cpp
     src/obstacle_tracker.cpp
     src/ttc_estimator.cpp
+    src/frame_slicer.cpp
+    src/adaptive_thresholds.cpp
+    src/detection_pipeline.cpp
+    src/output_paths.cpp
 )
 
-add_executable(optical_avoidance ${SOURCES})
+add_executable(optical_avoidance
+    src/main.cpp
+    src/bias_configurator.cpp
+    ${ALGO_SOURCES}
+)
 
 target_include_directories(optical_avoidance
     PRIVATE
         ${CMAKE_SOURCE_DIR}/include
-        ${OpenCV_INCLUDE_DIRS}
 )
 
 target_link_libraries(optical_avoidance
     PRIVATE
         MetavisionSDK::base
         MetavisionSDK::core
-	MetavisionSDK::stream
-        ${OpenCV_LIBS}
+        MetavisionSDK::stream
         OpenMP::OpenMP_CXX
 )
 
-# ─────────────────────────────────────────────
-#  Informacja buildowa
-# ─────────────────────────────────────────────
+add_executable(replay_viewer
+    src/replay_viewer.cpp
+    ${ALGO_SOURCES}
+)
+
+target_include_directories(replay_viewer
+    PRIVATE
+        ${CMAKE_SOURCE_DIR}/include
+)
+
+target_link_libraries(replay_viewer
+    PRIVATE
+        MetavisionSDK::base
+        MetavisionSDK::core
+        MetavisionSDK::stream
+        opencv_core
+        opencv_imgproc
+        opencv_highgui
+        OpenMP::OpenMP_CXX
+)
+
 message(STATUS "Build type    : ${CMAKE_BUILD_TYPE}")
 message(STATUS "Metavision SDK: found")
-message(STATUS "OpenCV ver    : ${OpenCV_VERSION}")
 message(STATUS "OpenMP        : ${OpenMP_CXX_VERSION}")

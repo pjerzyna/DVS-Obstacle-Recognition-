@@ -1,32 +1,34 @@
 #include "neighborhood_filter.hpp"
-#include <cstring>  // memset
+#include "sensor_config.hpp"
+
+#include <algorithm>
 
 namespace oa {
 
-NeighborhoodFilter::NeighborhoodFilter() {
-    std::memset(event_map_, 0, sizeof(event_map_));
-}
+NeighborhoodFilter::NeighborhoodFilter(int sensor_w, int sensor_h)
+    : sensor_w_(sensor_w),
+      sensor_h_(sensor_h),
+      event_map_(static_cast<size_t>(sensor_w) * static_cast<size_t>(sensor_h), 0) {}
 
-void NeighborhoodFilter::build_map(
-    const Metavision::EventCD* __restrict__ events,
-    size_t count)
-{
-    for (size_t i = 0; i < count; ++i) {
-        // Ochrona przed uszkodzonymi pakietami sprzętowymi (Out of Bounds)
-        if (events[i].x < SENSOR_W && events[i].y < SENSOR_H) [[likely]] {
-            event_map_[events[i].y * SENSOR_W + events[i].x] = 1;
-        }
+void NeighborhoodFilter::purge_old(Metavision::timestamp newest_ts) {
+    const Metavision::timestamp cutoff = newest_ts - config::TEMPORAL_WINDOW_US;
+    while (!temporal_buffer_.empty() && temporal_buffer_.front().t < cutoff) {
+        temporal_buffer_.pop_front();
     }
 }
 
-void NeighborhoodFilter::selective_clear(
-    const Metavision::EventCD* __restrict__ events,
-    size_t count)
-{
-    for (size_t i = 0; i < count; ++i) {
-        // Ochrona przed uszkodzonymi pakietami sprzętowymi przy czyszczeniu
-        if (events[i].x < SENSOR_W && events[i].y < SENSOR_H) [[likely]] {
-            event_map_[events[i].y * SENSOR_W + events[i].x] = 0;
+void NeighborhoodFilter::build_map() {
+    std::fill(event_map_.begin(), event_map_.end(), 0);
+
+    for (const auto& ev : temporal_buffer_) {
+        if (ev.x >= static_cast<unsigned>(sensor_w_) ||
+            ev.y >= static_cast<unsigned>(sensor_h_)) {
+            continue;
+        }
+        const size_t idx =
+            static_cast<size_t>(ev.y) * static_cast<size_t>(sensor_w_) + ev.x;
+        if (event_map_[idx] < 255) {
+            ++event_map_[idx];
         }
     }
 }
@@ -36,9 +38,15 @@ size_t NeighborhoodFilter::filter(
     size_t                                   count,
     std::vector<Metavision::EventCD>&        events_out)
 {
-    if (count == 0) return 0;
+    if (count == 0) {
+        return 0;
+    }
 
-    build_map(events_in, count);
+    for (size_t i = 0; i < count; ++i) {
+        temporal_buffer_.push_back(events_in[i]);
+    }
+    purge_old(events_in[count - 1].t);
+    build_map();
 
     events_out.resize(count);
     size_t out_count = 0;
@@ -47,26 +55,30 @@ size_t NeighborhoodFilter::filter(
         const int x = static_cast<int>(events_in[i].x);
         const int y = static_cast<int>(events_in[i].y);
 
-        // Jeśli pakiet jest uszkodzony gabarytowo, pomiń go na starcie
-        if (x >= SENSOR_W || y >= SENSOR_H) [[unlikely]] {
+        if (x >= sensor_w_ || y >= sensor_h_) {
             continue;
         }
 
-        // Prefetch kolejnych paczek — bezpieczny, sprawdzający granice
-        if (i + 8 < count) [[likely]] {
+        if (i + 8 < count) {
             const auto& next_ev = events_in[i + 8];
-            if (next_ev.x < SENSOR_W && next_ev.y < SENSOR_H) [[likely]] {
-                __builtin_prefetch(&event_map_[next_ev.y * SENSOR_W + next_ev.x], 0, 1);
+            if (next_ev.x < static_cast<unsigned>(sensor_w_) &&
+                next_ev.y < static_cast<unsigned>(sensor_h_)) {
+                const size_t pidx =
+                    static_cast<size_t>(next_ev.y) * static_cast<size_t>(sensor_w_) +
+                    next_ev.x;
+                __builtin_prefetch(&event_map_[pidx], 0, 1);
             }
         }
 
-        const int idx = y * SENSOR_W + x;
+        const size_t idx =
+            static_cast<size_t>(y) * static_cast<size_t>(sensor_w_) + static_cast<size_t>(x);
 
-        // Bezpieczne sprawdzanie sąsiadów wewnątrz chronionego indeksu
-        const uint8_t n_north = (y > 0)            ? event_map_[idx - SENSOR_W] : 0u;
-        const uint8_t n_south = (y < SENSOR_H - 1) ? event_map_[idx + SENSOR_W] : 0u;
-        const uint8_t n_west  = (x > 0)            ? event_map_[idx - 1]        : 0u;
-        const uint8_t n_east  = (x < SENSOR_W - 1) ? event_map_[idx + 1]        : 0u;
+        const uint8_t n_north = (y > 0) ? event_map_[idx - static_cast<size_t>(sensor_w_)] : 0u;
+        const uint8_t n_south = (y < sensor_h_ - 1)
+                                    ? event_map_[idx + static_cast<size_t>(sensor_w_)]
+                                    : 0u;
+        const uint8_t n_west  = (x > 0) ? event_map_[idx - 1] : 0u;
+        const uint8_t n_east  = (x < sensor_w_ - 1) ? event_map_[idx + 1] : 0u;
 
         if (static_cast<int>(n_north + n_south + n_west + n_east) >= MIN_NEIGHBORS) {
             events_out[out_count++] = events_in[i];
@@ -74,9 +86,6 @@ size_t NeighborhoodFilter::filter(
     }
 
     events_out.resize(out_count);
-
-    selective_clear(events_in, count);
-
     return out_count;
 }
 

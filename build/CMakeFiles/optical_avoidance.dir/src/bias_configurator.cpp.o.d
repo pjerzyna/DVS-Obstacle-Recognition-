@@ -1,7 +1,7 @@
 CMakeFiles/optical_avoidance.dir/src/bias_configurator.cpp.o: \
- /home/sterydy/DVS_setup/optical_avoidance/src/bias_configurator.cpp \
+ /home/sterydy/projekt/ver2/optical_avoidance/src/bias_configurator.cpp \
  /usr/include/stdc-predef.h \
- /home/sterydy/DVS_setup/optical_avoidance/include/bias_configurator.hpp \
+ /home/sterydy/projekt/ver2/optical_avoidance/include/bias_configurator.hpp \
  /usr/local/include/metavision/sdk/stream/camera.h \
  /usr/include/c++/12/cstdint \
  /usr/include/aarch64-linux-gnu/c++/12/bits/c++config.h \

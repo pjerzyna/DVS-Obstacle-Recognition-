@@ -1,7 +1,7 @@
 CMakeFiles/optical_avoidance.dir/src/neighborhood_filter.cpp.o: \
- /home/sterydy/DVS_setup/optical_avoidance/src/neighborhood_filter.cpp \
+ /home/sterydy/projekt/ver2/optical_avoidance/src/neighborhood_filter.cpp \
  /usr/include/stdc-predef.h \
- /home/sterydy/DVS_setup/optical_avoidance/include/neighborhood_filter.hpp \
+ /home/sterydy/projekt/ver2/optical_avoidance/include/neighborhood_filter.hpp \
  /usr/local/include/metavision/sdk/base/events/event_cd.h \
  /usr/local/include/metavision/sdk/base/events/event2d.h \
  /usr/include/c++/12/cstdint \
@@ -161,5 +161,13 @@ CMakeFiles/optical_avoidance.dir/src/neighborhood_filter.cpp.o: \
  /usr/local/include/metavision/sdk/base/utils/detail/struct_pack.h \
  /usr/local/include/metavision/sdk/base/utils/timestamp.h \
  /usr/local/include/metavision/sdk/base/events/detail/event_traits.h \
- /usr/include/c++/12/cstddef /usr/include/c++/12/cstring \
- /usr/include/string.h /usr/include/strings.h
+ /usr/include/c++/12/cstddef /usr/include/c++/12/deque \
+ /usr/include/c++/12/bits/stl_deque.h /usr/include/c++/12/bits/deque.tcc \
+ /home/sterydy/projekt/ver2/optical_avoidance/include/sensor_config.hpp \
+ /usr/include/c++/12/algorithm /usr/include/c++/12/bits/stl_algo.h \
+ /usr/include/c++/12/bits/algorithmfwd.h \
+ /usr/include/c++/12/bits/stl_heap.h \
+ /usr/include/c++/12/bits/stl_tempbuf.h \
+ /usr/include/c++/12/bits/uniform_int_dist.h \
+ /usr/include/c++/12/pstl/glue_algorithm_defs.h \
+ /usr/include/c++/12/pstl/execution_defs.h

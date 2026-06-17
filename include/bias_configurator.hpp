@@ -12,8 +12,8 @@ public:
     static constexpr int32_t DIFF_ON_VALUE  = 45;
     static constexpr int32_t DIFF_OFF_VALUE = 45;
 
-    /// Aplikuje biasy na urządzeniu. Rzuca std::runtime_error przy błędzie.
-    static void apply(Metavision::Camera& camera);
+    /// Aplikuje biasy na urządzeniu. Zwraca true przy sukcesie.
+    static bool apply(Metavision::Camera& camera);
 };
 
 } // namespace oa

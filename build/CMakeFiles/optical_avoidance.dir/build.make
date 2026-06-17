@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/sterydy/DVS_setup/optical_avoidance
+CMAKE_SOURCE_DIR = /home/sterydy/projekt/ver2/optical_avoidance
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/sterydy/DVS_setup/optical_avoidance/build
+CMAKE_BINARY_DIR = /home/sterydy/projekt/ver2/optical_avoidance/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/optical_avoidance.dir/depend.make
@@ -70,74 +70,130 @@ include CMakeFiles/optical_avoidance.dir/progress.make
 include CMakeFiles/optical_avoidance.dir/flags.make
 
 CMakeFiles/optical_avoidance.dir/src/main.cpp.o: CMakeFiles/optical_avoidance.dir/flags.make
-CMakeFiles/optical_avoidance.dir/src/main.cpp.o: /home/sterydy/DVS_setup/optical_avoidance/src/main.cpp
+CMakeFiles/optical_avoidance.dir/src/main.cpp.o: /home/sterydy/projekt/ver2/optical_avoidance/src/main.cpp
 CMakeFiles/optical_avoidance.dir/src/main.cpp.o: CMakeFiles/optical_avoidance.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sterydy/DVS_setup/optical_avoidance/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/optical_avoidance.dir/src/main.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/optical_avoidance.dir/src/main.cpp.o -MF CMakeFiles/optical_avoidance.dir/src/main.cpp.o.d -o CMakeFiles/optical_avoidance.dir/src/main.cpp.o -c /home/sterydy/DVS_setup/optical_avoidance/src/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sterydy/projekt/ver2/optical_avoidance/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/optical_avoidance.dir/src/main.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/optical_avoidance.dir/src/main.cpp.o -MF CMakeFiles/optical_avoidance.dir/src/main.cpp.o.d -o CMakeFiles/optical_avoidance.dir/src/main.cpp.o -c /home/sterydy/projekt/ver2/optical_avoidance/src/main.cpp
 
 CMakeFiles/optical_avoidance.dir/src/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/optical_avoidance.dir/src/main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sterydy/DVS_setup/optical_avoidance/src/main.cpp > CMakeFiles/optical_avoidance.dir/src/main.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sterydy/projekt/ver2/optical_avoidance/src/main.cpp > CMakeFiles/optical_avoidance.dir/src/main.cpp.i
 
 CMakeFiles/optical_avoidance.dir/src/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/optical_avoidance.dir/src/main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sterydy/DVS_setup/optical_avoidance/src/main.cpp -o CMakeFiles/optical_avoidance.dir/src/main.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sterydy/projekt/ver2/optical_avoidance/src/main.cpp -o CMakeFiles/optical_avoidance.dir/src/main.cpp.s
 
 CMakeFiles/optical_avoidance.dir/src/bias_configurator.cpp.o: CMakeFiles/optical_avoidance.dir/flags.make
-CMakeFiles/optical_avoidance.dir/src/bias_configurator.cpp.o: /home/sterydy/DVS_setup/optical_avoidance/src/bias_configurator.cpp
+CMakeFiles/optical_avoidance.dir/src/bias_configurator.cpp.o: /home/sterydy/projekt/ver2/optical_avoidance/src/bias_configurator.cpp
 CMakeFiles/optical_avoidance.dir/src/bias_configurator.cpp.o: CMakeFiles/optical_avoidance.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sterydy/DVS_setup/optical_avoidance/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/optical_avoidance.dir/src/bias_configurator.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/optical_avoidance.dir/src/bias_configurator.cpp.o -MF CMakeFiles/optical_avoidance.dir/src/bias_configurator.cpp.o.d -o CMakeFiles/optical_avoidance.dir/src/bias_configurator.cpp.o -c /home/sterydy/DVS_setup/optical_avoidance/src/bias_configurator.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sterydy/projekt/ver2/optical_avoidance/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/optical_avoidance.dir/src/bias_configurator.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/optical_avoidance.dir/src/bias_configurator.cpp.o -MF CMakeFiles/optical_avoidance.dir/src/bias_configurator.cpp.o.d -o CMakeFiles/optical_avoidance.dir/src/bias_configurator.cpp.o -c /home/sterydy/projekt/ver2/optical_avoidance/src/bias_configurator.cpp
 
 CMakeFiles/optical_avoidance.dir/src/bias_configurator.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/optical_avoidance.dir/src/bias_configurator.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sterydy/DVS_setup/optical_avoidance/src/bias_configurator.cpp > CMakeFiles/optical_avoidance.dir/src/bias_configurator.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sterydy/projekt/ver2/optical_avoidance/src/bias_configurator.cpp > CMakeFiles/optical_avoidance.dir/src/bias_configurator.cpp.i
 
 CMakeFiles/optical_avoidance.dir/src/bias_configurator.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/optical_avoidance.dir/src/bias_configurator.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sterydy/DVS_setup/optical_avoidance/src/bias_configurator.cpp -o CMakeFiles/optical_avoidance.dir/src/bias_configurator.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sterydy/projekt/ver2/optical_avoidance/src/bias_configurator.cpp -o CMakeFiles/optical_avoidance.dir/src/bias_configurator.cpp.s
 
 CMakeFiles/optical_avoidance.dir/src/neighborhood_filter.cpp.o: CMakeFiles/optical_avoidance.dir/flags.make
-CMakeFiles/optical_avoidance.dir/src/neighborhood_filter.cpp.o: /home/sterydy/DVS_setup/optical_avoidance/src/neighborhood_filter.cpp
+CMakeFiles/optical_avoidance.dir/src/neighborhood_filter.cpp.o: /home/sterydy/projekt/ver2/optical_avoidance/src/neighborhood_filter.cpp
 CMakeFiles/optical_avoidance.dir/src/neighborhood_filter.cpp.o: CMakeFiles/optical_avoidance.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sterydy/DVS_setup/optical_avoidance/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/optical_avoidance.dir/src/neighborhood_filter.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/optical_avoidance.dir/src/neighborhood_filter.cpp.o -MF CMakeFiles/optical_avoidance.dir/src/neighborhood_filter.cpp.o.d -o CMakeFiles/optical_avoidance.dir/src/neighborhood_filter.cpp.o -c /home/sterydy/DVS_setup/optical_avoidance/src/neighborhood_filter.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sterydy/projekt/ver2/optical_avoidance/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/optical_avoidance.dir/src/neighborhood_filter.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/optical_avoidance.dir/src/neighborhood_filter.cpp.o -MF CMakeFiles/optical_avoidance.dir/src/neighborhood_filter.cpp.o.d -o CMakeFiles/optical_avoidance.dir/src/neighborhood_filter.cpp.o -c /home/sterydy/projekt/ver2/optical_avoidance/src/neighborhood_filter.cpp
 
 CMakeFiles/optical_avoidance.dir/src/neighborhood_filter.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/optical_avoidance.dir/src/neighborhood_filter.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sterydy/DVS_setup/optical_avoidance/src/neighborhood_filter.cpp > CMakeFiles/optical_avoidance.dir/src/neighborhood_filter.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sterydy/projekt/ver2/optical_avoidance/src/neighborhood_filter.cpp > CMakeFiles/optical_avoidance.dir/src/neighborhood_filter.cpp.i
 
 CMakeFiles/optical_avoidance.dir/src/neighborhood_filter.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/optical_avoidance.dir/src/neighborhood_filter.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sterydy/DVS_setup/optical_avoidance/src/neighborhood_filter.cpp -o CMakeFiles/optical_avoidance.dir/src/neighborhood_filter.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sterydy/projekt/ver2/optical_avoidance/src/neighborhood_filter.cpp -o CMakeFiles/optical_avoidance.dir/src/neighborhood_filter.cpp.s
 
 CMakeFiles/optical_avoidance.dir/src/obstacle_tracker.cpp.o: CMakeFiles/optical_avoidance.dir/flags.make
-CMakeFiles/optical_avoidance.dir/src/obstacle_tracker.cpp.o: /home/sterydy/DVS_setup/optical_avoidance/src/obstacle_tracker.cpp
+CMakeFiles/optical_avoidance.dir/src/obstacle_tracker.cpp.o: /home/sterydy/projekt/ver2/optical_avoidance/src/obstacle_tracker.cpp
 CMakeFiles/optical_avoidance.dir/src/obstacle_tracker.cpp.o: CMakeFiles/optical_avoidance.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sterydy/DVS_setup/optical_avoidance/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/optical_avoidance.dir/src/obstacle_tracker.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/optical_avoidance.dir/src/obstacle_tracker.cpp.o -MF CMakeFiles/optical_avoidance.dir/src/obstacle_tracker.cpp.o.d -o CMakeFiles/optical_avoidance.dir/src/obstacle_tracker.cpp.o -c /home/sterydy/DVS_setup/optical_avoidance/src/obstacle_tracker.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sterydy/projekt/ver2/optical_avoidance/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/optical_avoidance.dir/src/obstacle_tracker.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/optical_avoidance.dir/src/obstacle_tracker.cpp.o -MF CMakeFiles/optical_avoidance.dir/src/obstacle_tracker.cpp.o.d -o CMakeFiles/optical_avoidance.dir/src/obstacle_tracker.cpp.o -c /home/sterydy/projekt/ver2/optical_avoidance/src/obstacle_tracker.cpp
 
 CMakeFiles/optical_avoidance.dir/src/obstacle_tracker.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/optical_avoidance.dir/src/obstacle_tracker.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sterydy/DVS_setup/optical_avoidance/src/obstacle_tracker.cpp > CMakeFiles/optical_avoidance.dir/src/obstacle_tracker.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sterydy/projekt/ver2/optical_avoidance/src/obstacle_tracker.cpp > CMakeFiles/optical_avoidance.dir/src/obstacle_tracker.cpp.i
 
 CMakeFiles/optical_avoidance.dir/src/obstacle_tracker.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/optical_avoidance.dir/src/obstacle_tracker.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sterydy/DVS_setup/optical_avoidance/src/obstacle_tracker.cpp -o CMakeFiles/optical_avoidance.dir/src/obstacle_tracker.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sterydy/projekt/ver2/optical_avoidance/src/obstacle_tracker.cpp -o CMakeFiles/optical_avoidance.dir/src/obstacle_tracker.cpp.s
 
 CMakeFiles/optical_avoidance.dir/src/ttc_estimator.cpp.o: CMakeFiles/optical_avoidance.dir/flags.make
-CMakeFiles/optical_avoidance.dir/src/ttc_estimator.cpp.o: /home/sterydy/DVS_setup/optical_avoidance/src/ttc_estimator.cpp
+CMakeFiles/optical_avoidance.dir/src/ttc_estimator.cpp.o: /home/sterydy/projekt/ver2/optical_avoidance/src/ttc_estimator.cpp
 CMakeFiles/optical_avoidance.dir/src/ttc_estimator.cpp.o: CMakeFiles/optical_avoidance.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sterydy/DVS_setup/optical_avoidance/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/optical_avoidance.dir/src/ttc_estimator.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/optical_avoidance.dir/src/ttc_estimator.cpp.o -MF CMakeFiles/optical_avoidance.dir/src/ttc_estimator.cpp.o.d -o CMakeFiles/optical_avoidance.dir/src/ttc_estimator.cpp.o -c /home/sterydy/DVS_setup/optical_avoidance/src/ttc_estimator.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sterydy/projekt/ver2/optical_avoidance/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/optical_avoidance.dir/src/ttc_estimator.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/optical_avoidance.dir/src/ttc_estimator.cpp.o -MF CMakeFiles/optical_avoidance.dir/src/ttc_estimator.cpp.o.d -o CMakeFiles/optical_avoidance.dir/src/ttc_estimator.cpp.o -c /home/sterydy/projekt/ver2/optical_avoidance/src/ttc_estimator.cpp
 
 CMakeFiles/optical_avoidance.dir/src/ttc_estimator.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/optical_avoidance.dir/src/ttc_estimator.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sterydy/DVS_setup/optical_avoidance/src/ttc_estimator.cpp > CMakeFiles/optical_avoidance.dir/src/ttc_estimator.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sterydy/projekt/ver2/optical_avoidance/src/ttc_estimator.cpp > CMakeFiles/optical_avoidance.dir/src/ttc_estimator.cpp.i
 
 CMakeFiles/optical_avoidance.dir/src/ttc_estimator.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/optical_avoidance.dir/src/ttc_estimator.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sterydy/DVS_setup/optical_avoidance/src/ttc_estimator.cpp -o CMakeFiles/optical_avoidance.dir/src/ttc_estimator.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sterydy/projekt/ver2/optical_avoidance/src/ttc_estimator.cpp -o CMakeFiles/optical_avoidance.dir/src/ttc_estimator.cpp.s
+
+CMakeFiles/optical_avoidance.dir/src/frame_slicer.cpp.o: CMakeFiles/optical_avoidance.dir/flags.make
+CMakeFiles/optical_avoidance.dir/src/frame_slicer.cpp.o: /home/sterydy/projekt/ver2/optical_avoidance/src/frame_slicer.cpp
+CMakeFiles/optical_avoidance.dir/src/frame_slicer.cpp.o: CMakeFiles/optical_avoidance.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sterydy/projekt/ver2/optical_avoidance/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/optical_avoidance.dir/src/frame_slicer.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/optical_avoidance.dir/src/frame_slicer.cpp.o -MF CMakeFiles/optical_avoidance.dir/src/frame_slicer.cpp.o.d -o CMakeFiles/optical_avoidance.dir/src/frame_slicer.cpp.o -c /home/sterydy/projekt/ver2/optical_avoidance/src/frame_slicer.cpp
+
+CMakeFiles/optical_avoidance.dir/src/frame_slicer.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/optical_avoidance.dir/src/frame_slicer.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sterydy/projekt/ver2/optical_avoidance/src/frame_slicer.cpp > CMakeFiles/optical_avoidance.dir/src/frame_slicer.cpp.i
+
+CMakeFiles/optical_avoidance.dir/src/frame_slicer.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/optical_avoidance.dir/src/frame_slicer.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sterydy/projekt/ver2/optical_avoidance/src/frame_slicer.cpp -o CMakeFiles/optical_avoidance.dir/src/frame_slicer.cpp.s
+
+CMakeFiles/optical_avoidance.dir/src/adaptive_thresholds.cpp.o: CMakeFiles/optical_avoidance.dir/flags.make
+CMakeFiles/optical_avoidance.dir/src/adaptive_thresholds.cpp.o: /home/sterydy/projekt/ver2/optical_avoidance/src/adaptive_thresholds.cpp
+CMakeFiles/optical_avoidance.dir/src/adaptive_thresholds.cpp.o: CMakeFiles/optical_avoidance.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sterydy/projekt/ver2/optical_avoidance/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/optical_avoidance.dir/src/adaptive_thresholds.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/optical_avoidance.dir/src/adaptive_thresholds.cpp.o -MF CMakeFiles/optical_avoidance.dir/src/adaptive_thresholds.cpp.o.d -o CMakeFiles/optical_avoidance.dir/src/adaptive_thresholds.cpp.o -c /home/sterydy/projekt/ver2/optical_avoidance/src/adaptive_thresholds.cpp
+
+CMakeFiles/optical_avoidance.dir/src/adaptive_thresholds.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/optical_avoidance.dir/src/adaptive_thresholds.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sterydy/projekt/ver2/optical_avoidance/src/adaptive_thresholds.cpp > CMakeFiles/optical_avoidance.dir/src/adaptive_thresholds.cpp.i
+
+CMakeFiles/optical_avoidance.dir/src/adaptive_thresholds.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/optical_avoidance.dir/src/adaptive_thresholds.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sterydy/projekt/ver2/optical_avoidance/src/adaptive_thresholds.cpp -o CMakeFiles/optical_avoidance.dir/src/adaptive_thresholds.cpp.s
+
+CMakeFiles/optical_avoidance.dir/src/detection_pipeline.cpp.o: CMakeFiles/optical_avoidance.dir/flags.make
+CMakeFiles/optical_avoidance.dir/src/detection_pipeline.cpp.o: /home/sterydy/projekt/ver2/optical_avoidance/src/detection_pipeline.cpp
+CMakeFiles/optical_avoidance.dir/src/detection_pipeline.cpp.o: CMakeFiles/optical_avoidance.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sterydy/projekt/ver2/optical_avoidance/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/optical_avoidance.dir/src/detection_pipeline.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/optical_avoidance.dir/src/detection_pipeline.cpp.o -MF CMakeFiles/optical_avoidance.dir/src/detection_pipeline.cpp.o.d -o CMakeFiles/optical_avoidance.dir/src/detection_pipeline.cpp.o -c /home/sterydy/projekt/ver2/optical_avoidance/src/detection_pipeline.cpp
+
+CMakeFiles/optical_avoidance.dir/src/detection_pipeline.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/optical_avoidance.dir/src/detection_pipeline.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sterydy/projekt/ver2/optical_avoidance/src/detection_pipeline.cpp > CMakeFiles/optical_avoidance.dir/src/detection_pipeline.cpp.i
+
+CMakeFiles/optical_avoidance.dir/src/detection_pipeline.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/optical_avoidance.dir/src/detection_pipeline.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sterydy/projekt/ver2/optical_avoidance/src/detection_pipeline.cpp -o CMakeFiles/optical_avoidance.dir/src/detection_pipeline.cpp.s
+
+CMakeFiles/optical_avoidance.dir/src/output_paths.cpp.o: CMakeFiles/optical_avoidance.dir/flags.make
+CMakeFiles/optical_avoidance.dir/src/output_paths.cpp.o: /home/sterydy/projekt/ver2/optical_avoidance/src/output_paths.cpp
+CMakeFiles/optical_avoidance.dir/src/output_paths.cpp.o: CMakeFiles/optical_avoidance.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/sterydy/projekt/ver2/optical_avoidance/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/optical_avoidance.dir/src/output_paths.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/optical_avoidance.dir/src/output_paths.cpp.o -MF CMakeFiles/optical_avoidance.dir/src/output_paths.cpp.o.d -o CMakeFiles/optical_avoidance.dir/src/output_paths.cpp.o -c /home/sterydy/projekt/ver2/optical_avoidance/src/output_paths.cpp
+
+CMakeFiles/optical_avoidance.dir/src/output_paths.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/optical_avoidance.dir/src/output_paths.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sterydy/projekt/ver2/optical_avoidance/src/output_paths.cpp > CMakeFiles/optical_avoidance.dir/src/output_paths.cpp.i
+
+CMakeFiles/optical_avoidance.dir/src/output_paths.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/optical_avoidance.dir/src/output_paths.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sterydy/projekt/ver2/optical_avoidance/src/output_paths.cpp -o CMakeFiles/optical_avoidance.dir/src/output_paths.cpp.s
 
 # Object files for target optical_avoidance
 optical_avoidance_OBJECTS = \
@@ -145,7 +201,11 @@ optical_avoidance_OBJECTS = \
 "CMakeFiles/optical_avoidance.dir/src/bias_configurator.cpp.o" \
 "CMakeFiles/optical_avoidance.dir/src/neighborhood_filter.cpp.o" \
 "CMakeFiles/optical_avoidance.dir/src/obstacle_tracker.cpp.o" \
-"CMakeFiles/optical_avoidance.dir/src/ttc_estimator.cpp.o"
+"CMakeFiles/optical_avoidance.dir/src/ttc_estimator.cpp.o" \
+"CMakeFiles/optical_avoidance.dir/src/frame_slicer.cpp.o" \
+"CMakeFiles/optical_avoidance.dir/src/adaptive_thresholds.cpp.o" \
+"CMakeFiles/optical_avoidance.dir/src/detection_pipeline.cpp.o" \
+"CMakeFiles/optical_avoidance.dir/src/output_paths.cpp.o"
 
 # External object files for target optical_avoidance
 optical_avoidance_EXTERNAL_OBJECTS =
@@ -155,9 +215,13 @@ optical_avoidance: CMakeFiles/optical_avoidance.dir/src/bias_configurator.cpp.o
 optical_avoidance: CMakeFiles/optical_avoidance.dir/src/neighborhood_filter.cpp.o
 optical_avoidance: CMakeFiles/optical_avoidance.dir/src/obstacle_tracker.cpp.o
 optical_avoidance: CMakeFiles/optical_avoidance.dir/src/ttc_estimator.cpp.o
+optical_avoidance: CMakeFiles/optical_avoidance.dir/src/frame_slicer.cpp.o
+optical_avoidance: CMakeFiles/optical_avoidance.dir/src/adaptive_thresholds.cpp.o
+optical_avoidance: CMakeFiles/optical_avoidance.dir/src/detection_pipeline.cpp.o
+optical_avoidance: CMakeFiles/optical_avoidance.dir/src/output_paths.cpp.o
 optical_avoidance: CMakeFiles/optical_avoidance.dir/build.make
-optical_avoidance: /usr/local/lib/libmetavision_sdk_stream.so.5.2.0
-optical_avoidance: /usr/local/lib/libmetavision_sdk_core.so.5.2.0
+optical_avoidance: /usr/local/lib/libmetavision_sdk_stream.so.5.1.1
+optical_avoidance: /usr/local/lib/libmetavision_sdk_core.so.5.1.1
 optical_avoidance: /usr/lib/aarch64-linux-gnu/libopencv_highgui.so.4.6.0
 optical_avoidance: /usr/lib/aarch64-linux-gnu/libopencv_videoio.so.4.6.0
 optical_avoidance: /usr/lib/aarch64-linux-gnu/libopencv_imgcodecs.so.4.6.0
@@ -165,13 +229,13 @@ optical_avoidance: /usr/lib/aarch64-linux-gnu/libopencv_imgproc.so.4.6.0
 optical_avoidance: /usr/lib/aarch64-linux-gnu/libopencv_core.so.4.6.0
 optical_avoidance: /usr/lib/aarch64-linux-gnu/libboost_timer.so.1.74.0
 optical_avoidance: /usr/lib/aarch64-linux-gnu/libboost_chrono.so.1.74.0
-optical_avoidance: /usr/local/lib/libmetavision_hal_discovery.so.5.2.0
-optical_avoidance: /usr/local/lib/libmetavision_hal.so.5.2.0
-optical_avoidance: /usr/local/lib/libmetavision_sdk_base.so.5.2.0
+optical_avoidance: /usr/local/lib/libmetavision_hal_discovery.so.5.1.1
+optical_avoidance: /usr/local/lib/libmetavision_hal.so.5.1.1
+optical_avoidance: /usr/local/lib/libmetavision_sdk_base.so.5.1.1
 optical_avoidance: /usr/lib/gcc/aarch64-linux-gnu/12/libgomp.so
 optical_avoidance: /usr/lib/aarch64-linux-gnu/libpthread.a
 optical_avoidance: CMakeFiles/optical_avoidance.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/sterydy/DVS_setup/optical_avoidance/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable optical_avoidance"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/sterydy/projekt/ver2/optical_avoidance/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Linking CXX executable optical_avoidance"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/optical_avoidance.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -183,6 +247,6 @@ CMakeFiles/optical_avoidance.dir/clean:
 .PHONY : CMakeFiles/optical_avoidance.dir/clean
 
 CMakeFiles/optical_avoidance.dir/depend:
-	cd /home/sterydy/DVS_setup/optical_avoidance/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/sterydy/DVS_setup/optical_avoidance /home/sterydy/DVS_setup/optical_avoidance /home/sterydy/DVS_setup/optical_avoidance/build /home/sterydy/DVS_setup/optical_avoidance/build /home/sterydy/DVS_setup/optical_avoidance/build/CMakeFiles/optical_avoidance.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/sterydy/projekt/ver2/optical_avoidance/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/sterydy/projekt/ver2/optical_avoidance /home/sterydy/projekt/ver2/optical_avoidance /home/sterydy/projekt/ver2/optical_avoidance/build /home/sterydy/projekt/ver2/optical_avoidance/build /home/sterydy/projekt/ver2/optical_avoidance/build/CMakeFiles/optical_avoidance.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/optical_avoidance.dir/depend
 
