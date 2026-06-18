@@ -51,6 +51,10 @@ TtcResult TtcEstimator::estimate(const TrackResult& cur, Metavision::timestamp t
         const float growth_rate     = net_growth / dt_s;       // px²/s
         const float relative_growth = net_growth / static_cast<float>(base_area);
 
+        // Diagnostyka/metryki — nie wpływa na decyzję.
+        result.growth_rate     = growth_rate;
+        result.relative_growth = relative_growth;
+
         if (growth_rate >= MIN_GROWTH_RATE && relative_growth >= MIN_RELATIVE_GROWTH) {
             expanding = true;
             const float raw_ttc = static_cast<float>(cur_size) / growth_rate;
@@ -70,6 +74,8 @@ TtcResult TtcEstimator::estimate(const TrackResult& cur, Metavision::timestamp t
             smoothed = -1.f;
         }
     }
+
+    result.expanding = expanding;
 
     if (smoothed > 0.f && smoothed < TTC_DANGER_THRESHOLD_S && expanding) {
         result.danger = true;

@@ -14,9 +14,14 @@ namespace oa {
 //
 //  KONTRAKT WĄTKOWY: obiekt jest własnością wyłącznie wątku callbacku SDK.
 // ─────────────────────────────────────────────────────────────────────────────
+// Nadpisywalne przy kompilacji (-DOA_FILTER_MIN_NEIGHBORS=2) do przemiatania.
+#ifndef OA_FILTER_MIN_NEIGHBORS
+#define OA_FILTER_MIN_NEIGHBORS 1
+#endif
+
 class NeighborhoodFilter {
 public:
-    static constexpr int MIN_NEIGHBORS = 1;
+    static constexpr int MIN_NEIGHBORS = OA_FILTER_MIN_NEIGHBORS;
 
     explicit NeighborhoodFilter(int sensor_w, int sensor_h);
 
@@ -28,6 +33,9 @@ public:
 
     int sensor_w() const noexcept { return sensor_w_; }
     int sensor_h() const noexcept { return sensor_h_; }
+
+    /// Liczba zdarzeń w buforze czasowym — do metryk pamięci.
+    size_t temporal_buffer_size() const noexcept { return temporal_buffer_.size(); }
 
 private:
     void purge_old(Metavision::timestamp newest_ts);

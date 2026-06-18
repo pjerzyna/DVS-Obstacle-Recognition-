@@ -795,6 +795,53 @@ CMakeFiles/optical_avoidance.dir/src/detection_pipeline.cpp.o: /home/sterydy/pro
   /usr/include/c++/12/deque \
   /usr/include/c++/12/bits/stl_deque.h \
   /usr/include/c++/12/bits/deque.tcc \
+  /home/sterydy/projekt/ver2/optical_avoidance/include/perf_metrics.hpp \
+  /usr/include/c++/12/chrono \
+  /usr/include/c++/12/bits/chrono.h \
+  /usr/include/c++/12/ratio \
+  /usr/include/c++/12/limits \
+  /usr/include/c++/12/ctime \
+  /usr/include/c++/12/bits/parse_numbers.h \
+  /usr/include/c++/12/cmath \
+  /usr/include/math.h \
+  /usr/include/aarch64-linux-gnu/bits/math-vector.h \
+  /usr/include/aarch64-linux-gnu/bits/libm-simd-decl-stubs.h \
+  /usr/include/aarch64-linux-gnu/bits/flt-eval-method.h \
+  /usr/include/aarch64-linux-gnu/bits/fp-logb.h \
+  /usr/include/aarch64-linux-gnu/bits/fp-fast.h \
+  /usr/include/aarch64-linux-gnu/bits/mathcalls-helper-functions.h \
+  /usr/include/aarch64-linux-gnu/bits/mathcalls.h \
+  /usr/include/aarch64-linux-gnu/bits/mathcalls-narrow.h \
+  /usr/include/aarch64-linux-gnu/bits/iscanonical.h \
+  /usr/include/c++/12/bits/specfun.h \
+  /usr/include/c++/12/tr1/gamma.tcc \
+  /usr/include/c++/12/tr1/special_function_util.h \
+  /usr/include/c++/12/tr1/bessel_function.tcc \
+  /usr/include/c++/12/tr1/beta_function.tcc \
+  /usr/include/c++/12/tr1/ell_integral.tcc \
+  /usr/include/c++/12/tr1/exp_integral.tcc \
+  /usr/include/c++/12/tr1/hypergeometric.tcc \
+  /usr/include/c++/12/tr1/legendre_function.tcc \
+  /usr/include/c++/12/tr1/modified_bessel_func.tcc \
+  /usr/include/c++/12/tr1/poly_hermite.tcc \
+  /usr/include/c++/12/tr1/poly_laguerre.tcc \
+  /usr/include/c++/12/tr1/riemann_zeta.tcc \
+  /usr/include/c++/12/fstream \
+  /usr/include/c++/12/bits/codecvt.h \
+  /usr/include/aarch64-linux-gnu/c++/12/bits/basic_file.h \
+  /usr/include/aarch64-linux-gnu/c++/12/bits/c++io.h \
+  /usr/include/c++/12/bits/fstream.tcc \
+  /usr/include/c++/12/iomanip \
+  /usr/include/c++/12/locale \
+  /usr/include/c++/12/bits/locale_facets_nonio.h \
+  /usr/include/aarch64-linux-gnu/c++/12/bits/time_members.h \
+  /usr/include/aarch64-linux-gnu/c++/12/bits/messages_members.h \
+  /usr/include/libintl.h \
+  /usr/include/c++/12/bits/locale_facets_nonio.tcc \
+  /usr/include/c++/12/bits/locale_conv.h \
+  /usr/include/c++/12/bits/quoted_string.h \
+  /usr/include/c++/12/sstream \
+  /usr/include/c++/12/bits/sstream.tcc \
   /home/sterydy/projekt/ver2/optical_avoidance/include/ttc_estimator.hpp \
   /usr/include/c++/12/array \
   /usr/include/c++/12/compare
@@ -1434,7 +1481,9 @@ CMakeFiles/optical_avoidance.dir/src/main.cpp.o: /home/sterydy/projekt/ver2/opti
   /usr/include/c++/12/deque \
   /usr/include/c++/12/bits/stl_deque.h \
   /usr/include/c++/12/bits/deque.tcc \
+  /home/sterydy/projekt/ver2/optical_avoidance/include/perf_metrics.hpp \
   /home/sterydy/projekt/ver2/optical_avoidance/include/ttc_estimator.hpp \
+  /home/sterydy/projekt/ver2/optical_avoidance/include/metrics_cli.hpp \
   /home/sterydy/projekt/ver2/optical_avoidance/include/output_paths.hpp
 
 CMakeFiles/optical_avoidance.dir/src/neighborhood_filter.cpp.o: /home/sterydy/projekt/ver2/optical_avoidance/src/neighborhood_filter.cpp \
@@ -2271,6 +2320,9 @@ CMakeFiles/optical_avoidance.dir/src/ttc_estimator.cpp.o: /home/sterydy/projekt/
   /usr/include/c++/12/cstddef \
   /usr/include/c++/12/array \
   /usr/include/c++/12/compare \
+  /usr/include/c++/12/deque \
+  /usr/include/c++/12/bits/stl_deque.h \
+  /usr/include/c++/12/bits/deque.tcc \
   /usr/include/c++/12/sstream \
   /usr/include/c++/12/bits/sstream.tcc \
   /usr/include/c++/12/algorithm \
@@ -2289,13 +2341,7 @@ CMakeFiles/optical_avoidance.dir/src/ttc_estimator.cpp.o: /home/sterydy/projekt/
 
 /home/sterydy/projekt/ver2/optical_avoidance/include/output_paths.hpp:
 
-/usr/include/c++/12/bits/fstream.tcc:
-
-/usr/include/aarch64-linux-gnu/c++/12/bits/basic_file.h:
-
-/usr/include/c++/12/fstream:
-
-/usr/include/c++/12/chrono:
+/home/sterydy/projekt/ver2/optical_avoidance/include/metrics_cli.hpp:
 
 /usr/include/c++/12/bits/this_thread_sleep.h:
 
@@ -2348,6 +2394,16 @@ CMakeFiles/optical_avoidance.dir/src/ttc_estimator.cpp.o: /home/sterydy/projekt/
 /usr/include/aarch64-linux-gnu/bits/signum-arch.h:
 
 /usr/include/c++/12/csignal:
+
+/usr/include/c++/12/bits/fstream.tcc:
+
+/usr/include/aarch64-linux-gnu/c++/12/bits/basic_file.h:
+
+/usr/include/c++/12/fstream:
+
+/usr/include/c++/12/chrono:
+
+/home/sterydy/projekt/ver2/optical_avoidance/include/perf_metrics.hpp:
 
 /usr/include/aarch64-linux-gnu/bits/signum-generic.h:
 

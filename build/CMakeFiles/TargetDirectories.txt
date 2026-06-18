@@ -1,4 +1,5 @@
 /home/sterydy/projekt/ver2/optical_avoidance/build/CMakeFiles/optical_avoidance.dir
 /home/sterydy/projekt/ver2/optical_avoidance/build/CMakeFiles/replay_viewer.dir
+/home/sterydy/projekt/ver2/optical_avoidance/build/CMakeFiles/benchmark.dir
 /home/sterydy/projekt/ver2/optical_avoidance/build/CMakeFiles/edit_cache.dir
 /home/sterydy/projekt/ver2/optical_avoidance/build/CMakeFiles/rebuild_cache.dir

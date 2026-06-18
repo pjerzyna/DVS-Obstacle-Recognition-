@@ -142,6 +142,19 @@ replay_viewer/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/replay_viewer.dir/build.make CMakeFiles/replay_viewer.dir/build
 .PHONY : replay_viewer/fast
 
+#=============================================================================
+# Target rules for targets named benchmark
+
+# Build rule for target.
+benchmark: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 benchmark
+.PHONY : benchmark
+
+# fast build rule for target.
+benchmark/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/benchmark.dir/build.make CMakeFiles/benchmark.dir/build
+.PHONY : benchmark/fast
+
 src/adaptive_thresholds.o: src/adaptive_thresholds.cpp.o
 .PHONY : src/adaptive_thresholds.o
 
@@ -149,6 +162,7 @@ src/adaptive_thresholds.o: src/adaptive_thresholds.cpp.o
 src/adaptive_thresholds.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/optical_avoidance.dir/build.make CMakeFiles/optical_avoidance.dir/src/adaptive_thresholds.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/replay_viewer.dir/build.make CMakeFiles/replay_viewer.dir/src/adaptive_thresholds.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/benchmark.dir/build.make CMakeFiles/benchmark.dir/src/adaptive_thresholds.cpp.o
 .PHONY : src/adaptive_thresholds.cpp.o
 
 src/adaptive_thresholds.i: src/adaptive_thresholds.cpp.i
@@ -158,6 +172,7 @@ src/adaptive_thresholds.i: src/adaptive_thresholds.cpp.i
 src/adaptive_thresholds.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/optical_avoidance.dir/build.make CMakeFiles/optical_avoidance.dir/src/adaptive_thresholds.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/replay_viewer.dir/build.make CMakeFiles/replay_viewer.dir/src/adaptive_thresholds.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/benchmark.dir/build.make CMakeFiles/benchmark.dir/src/adaptive_thresholds.cpp.i
 .PHONY : src/adaptive_thresholds.cpp.i
 
 src/adaptive_thresholds.s: src/adaptive_thresholds.cpp.s
@@ -167,7 +182,32 @@ src/adaptive_thresholds.s: src/adaptive_thresholds.cpp.s
 src/adaptive_thresholds.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/optical_avoidance.dir/build.make CMakeFiles/optical_avoidance.dir/src/adaptive_thresholds.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/replay_viewer.dir/build.make CMakeFiles/replay_viewer.dir/src/adaptive_thresholds.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/benchmark.dir/build.make CMakeFiles/benchmark.dir/src/adaptive_thresholds.cpp.s
 .PHONY : src/adaptive_thresholds.cpp.s
+
+src/benchmark.o: src/benchmark.cpp.o
+.PHONY : src/benchmark.o
+
+# target to build an object file
+src/benchmark.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/benchmark.dir/build.make CMakeFiles/benchmark.dir/src/benchmark.cpp.o
+.PHONY : src/benchmark.cpp.o
+
+src/benchmark.i: src/benchmark.cpp.i
+.PHONY : src/benchmark.i
+
+# target to preprocess a source file
+src/benchmark.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/benchmark.dir/build.make CMakeFiles/benchmark.dir/src/benchmark.cpp.i
+.PHONY : src/benchmark.cpp.i
+
+src/benchmark.s: src/benchmark.cpp.s
+.PHONY : src/benchmark.s
+
+# target to generate assembly for a file
+src/benchmark.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/benchmark.dir/build.make CMakeFiles/benchmark.dir/src/benchmark.cpp.s
+.PHONY : src/benchmark.cpp.s
 
 src/bias_configurator.o: src/bias_configurator.cpp.o
 .PHONY : src/bias_configurator.o
@@ -200,6 +240,7 @@ src/detection_pipeline.o: src/detection_pipeline.cpp.o
 src/detection_pipeline.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/optical_avoidance.dir/build.make CMakeFiles/optical_avoidance.dir/src/detection_pipeline.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/replay_viewer.dir/build.make CMakeFiles/replay_viewer.dir/src/detection_pipeline.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/benchmark.dir/build.make CMakeFiles/benchmark.dir/src/detection_pipeline.cpp.o
 .PHONY : src/detection_pipeline.cpp.o
 
 src/detection_pipeline.i: src/detection_pipeline.cpp.i
@@ -209,6 +250,7 @@ src/detection_pipeline.i: src/detection_pipeline.cpp.i
 src/detection_pipeline.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/optical_avoidance.dir/build.make CMakeFiles/optical_avoidance.dir/src/detection_pipeline.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/replay_viewer.dir/build.make CMakeFiles/replay_viewer.dir/src/detection_pipeline.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/benchmark.dir/build.make CMakeFiles/benchmark.dir/src/detection_pipeline.cpp.i
 .PHONY : src/detection_pipeline.cpp.i
 
 src/detection_pipeline.s: src/detection_pipeline.cpp.s
@@ -218,6 +260,7 @@ src/detection_pipeline.s: src/detection_pipeline.cpp.s
 src/detection_pipeline.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/optical_avoidance.dir/build.make CMakeFiles/optical_avoidance.dir/src/detection_pipeline.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/replay_viewer.dir/build.make CMakeFiles/replay_viewer.dir/src/detection_pipeline.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/benchmark.dir/build.make CMakeFiles/benchmark.dir/src/detection_pipeline.cpp.s
 .PHONY : src/detection_pipeline.cpp.s
 
 src/frame_slicer.o: src/frame_slicer.cpp.o
@@ -227,6 +270,7 @@ src/frame_slicer.o: src/frame_slicer.cpp.o
 src/frame_slicer.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/optical_avoidance.dir/build.make CMakeFiles/optical_avoidance.dir/src/frame_slicer.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/replay_viewer.dir/build.make CMakeFiles/replay_viewer.dir/src/frame_slicer.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/benchmark.dir/build.make CMakeFiles/benchmark.dir/src/frame_slicer.cpp.o
 .PHONY : src/frame_slicer.cpp.o
 
 src/frame_slicer.i: src/frame_slicer.cpp.i
@@ -236,6 +280,7 @@ src/frame_slicer.i: src/frame_slicer.cpp.i
 src/frame_slicer.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/optical_avoidance.dir/build.make CMakeFiles/optical_avoidance.dir/src/frame_slicer.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/replay_viewer.dir/build.make CMakeFiles/replay_viewer.dir/src/frame_slicer.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/benchmark.dir/build.make CMakeFiles/benchmark.dir/src/frame_slicer.cpp.i
 .PHONY : src/frame_slicer.cpp.i
 
 src/frame_slicer.s: src/frame_slicer.cpp.s
@@ -245,6 +290,7 @@ src/frame_slicer.s: src/frame_slicer.cpp.s
 src/frame_slicer.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/optical_avoidance.dir/build.make CMakeFiles/optical_avoidance.dir/src/frame_slicer.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/replay_viewer.dir/build.make CMakeFiles/replay_viewer.dir/src/frame_slicer.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/benchmark.dir/build.make CMakeFiles/benchmark.dir/src/frame_slicer.cpp.s
 .PHONY : src/frame_slicer.cpp.s
 
 src/main.o: src/main.cpp.o
@@ -278,6 +324,7 @@ src/neighborhood_filter.o: src/neighborhood_filter.cpp.o
 src/neighborhood_filter.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/optical_avoidance.dir/build.make CMakeFiles/optical_avoidance.dir/src/neighborhood_filter.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/replay_viewer.dir/build.make CMakeFiles/replay_viewer.dir/src/neighborhood_filter.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/benchmark.dir/build.make CMakeFiles/benchmark.dir/src/neighborhood_filter.cpp.o
 .PHONY : src/neighborhood_filter.cpp.o
 
 src/neighborhood_filter.i: src/neighborhood_filter.cpp.i
@@ -287,6 +334,7 @@ src/neighborhood_filter.i: src/neighborhood_filter.cpp.i
 src/neighborhood_filter.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/optical_avoidance.dir/build.make CMakeFiles/optical_avoidance.dir/src/neighborhood_filter.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/replay_viewer.dir/build.make CMakeFiles/replay_viewer.dir/src/neighborhood_filter.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/benchmark.dir/build.make CMakeFiles/benchmark.dir/src/neighborhood_filter.cpp.i
 .PHONY : src/neighborhood_filter.cpp.i
 
 src/neighborhood_filter.s: src/neighborhood_filter.cpp.s
@@ -296,6 +344,7 @@ src/neighborhood_filter.s: src/neighborhood_filter.cpp.s
 src/neighborhood_filter.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/optical_avoidance.dir/build.make CMakeFiles/optical_avoidance.dir/src/neighborhood_filter.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/replay_viewer.dir/build.make CMakeFiles/replay_viewer.dir/src/neighborhood_filter.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/benchmark.dir/build.make CMakeFiles/benchmark.dir/src/neighborhood_filter.cpp.s
 .PHONY : src/neighborhood_filter.cpp.s
 
 src/obstacle_tracker.o: src/obstacle_tracker.cpp.o
@@ -305,6 +354,7 @@ src/obstacle_tracker.o: src/obstacle_tracker.cpp.o
 src/obstacle_tracker.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/optical_avoidance.dir/build.make CMakeFiles/optical_avoidance.dir/src/obstacle_tracker.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/replay_viewer.dir/build.make CMakeFiles/replay_viewer.dir/src/obstacle_tracker.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/benchmark.dir/build.make CMakeFiles/benchmark.dir/src/obstacle_tracker.cpp.o
 .PHONY : src/obstacle_tracker.cpp.o
 
 src/obstacle_tracker.i: src/obstacle_tracker.cpp.i
@@ -314,6 +364,7 @@ src/obstacle_tracker.i: src/obstacle_tracker.cpp.i
 src/obstacle_tracker.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/optical_avoidance.dir/build.make CMakeFiles/optical_avoidance.dir/src/obstacle_tracker.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/replay_viewer.dir/build.make CMakeFiles/replay_viewer.dir/src/obstacle_tracker.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/benchmark.dir/build.make CMakeFiles/benchmark.dir/src/obstacle_tracker.cpp.i
 .PHONY : src/obstacle_tracker.cpp.i
 
 src/obstacle_tracker.s: src/obstacle_tracker.cpp.s
@@ -323,6 +374,7 @@ src/obstacle_tracker.s: src/obstacle_tracker.cpp.s
 src/obstacle_tracker.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/optical_avoidance.dir/build.make CMakeFiles/optical_avoidance.dir/src/obstacle_tracker.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/replay_viewer.dir/build.make CMakeFiles/replay_viewer.dir/src/obstacle_tracker.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/benchmark.dir/build.make CMakeFiles/benchmark.dir/src/obstacle_tracker.cpp.s
 .PHONY : src/obstacle_tracker.cpp.s
 
 src/output_paths.o: src/output_paths.cpp.o
@@ -332,6 +384,7 @@ src/output_paths.o: src/output_paths.cpp.o
 src/output_paths.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/optical_avoidance.dir/build.make CMakeFiles/optical_avoidance.dir/src/output_paths.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/replay_viewer.dir/build.make CMakeFiles/replay_viewer.dir/src/output_paths.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/benchmark.dir/build.make CMakeFiles/benchmark.dir/src/output_paths.cpp.o
 .PHONY : src/output_paths.cpp.o
 
 src/output_paths.i: src/output_paths.cpp.i
@@ -341,6 +394,7 @@ src/output_paths.i: src/output_paths.cpp.i
 src/output_paths.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/optical_avoidance.dir/build.make CMakeFiles/optical_avoidance.dir/src/output_paths.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/replay_viewer.dir/build.make CMakeFiles/replay_viewer.dir/src/output_paths.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/benchmark.dir/build.make CMakeFiles/benchmark.dir/src/output_paths.cpp.i
 .PHONY : src/output_paths.cpp.i
 
 src/output_paths.s: src/output_paths.cpp.s
@@ -350,6 +404,7 @@ src/output_paths.s: src/output_paths.cpp.s
 src/output_paths.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/optical_avoidance.dir/build.make CMakeFiles/optical_avoidance.dir/src/output_paths.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/replay_viewer.dir/build.make CMakeFiles/replay_viewer.dir/src/output_paths.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/benchmark.dir/build.make CMakeFiles/benchmark.dir/src/output_paths.cpp.s
 .PHONY : src/output_paths.cpp.s
 
 src/replay_viewer.o: src/replay_viewer.cpp.o
@@ -383,6 +438,7 @@ src/ttc_estimator.o: src/ttc_estimator.cpp.o
 src/ttc_estimator.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/optical_avoidance.dir/build.make CMakeFiles/optical_avoidance.dir/src/ttc_estimator.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/replay_viewer.dir/build.make CMakeFiles/replay_viewer.dir/src/ttc_estimator.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/benchmark.dir/build.make CMakeFiles/benchmark.dir/src/ttc_estimator.cpp.o
 .PHONY : src/ttc_estimator.cpp.o
 
 src/ttc_estimator.i: src/ttc_estimator.cpp.i
@@ -392,6 +448,7 @@ src/ttc_estimator.i: src/ttc_estimator.cpp.i
 src/ttc_estimator.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/optical_avoidance.dir/build.make CMakeFiles/optical_avoidance.dir/src/ttc_estimator.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/replay_viewer.dir/build.make CMakeFiles/replay_viewer.dir/src/ttc_estimator.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/benchmark.dir/build.make CMakeFiles/benchmark.dir/src/ttc_estimator.cpp.i
 .PHONY : src/ttc_estimator.cpp.i
 
 src/ttc_estimator.s: src/ttc_estimator.cpp.s
@@ -401,6 +458,7 @@ src/ttc_estimator.s: src/ttc_estimator.cpp.s
 src/ttc_estimator.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/optical_avoidance.dir/build.make CMakeFiles/optical_avoidance.dir/src/ttc_estimator.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/replay_viewer.dir/build.make CMakeFiles/replay_viewer.dir/src/ttc_estimator.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/benchmark.dir/build.make CMakeFiles/benchmark.dir/src/ttc_estimator.cpp.s
 .PHONY : src/ttc_estimator.cpp.s
 
 # Help Target
@@ -411,11 +469,15 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
+	@echo "... benchmark"
 	@echo "... optical_avoidance"
 	@echo "... replay_viewer"
 	@echo "... src/adaptive_thresholds.o"
 	@echo "... src/adaptive_thresholds.i"
 	@echo "... src/adaptive_thresholds.s"
+	@echo "... src/benchmark.o"
+	@echo "... src/benchmark.i"
+	@echo "... src/benchmark.s"
 	@echo "... src/bias_configurator.o"
 	@echo "... src/bias_configurator.i"
 	@echo "... src/bias_configurator.s"

@@ -16,8 +16,11 @@
 #include <metavision/sdk/base/events/event_cd.h>
 
 #include "detection_pipeline.hpp"
+#include "metrics_cli.hpp"
 #include "output_paths.hpp"
+#include "perf_metrics.hpp"
 #include "sensor_config.hpp"
+#include <filesystem>
 
 static std::atomic<bool> g_running{true};
 
@@ -108,6 +111,14 @@ int main(int argc, char** argv) {
 
     oa::DetectionPipeline pipeline(width, height);
 
+    // ── Opcjonalna instrumentacja wydajności ─────────────────────────────────
+    const oa::MetricsCliOptions metrics_opt = oa::parse_metrics_cli(argc, argv);
+    oa::PerfMetrics metrics(static_cast<double>(oa::config::SLICE_DURATION_US));
+    if (metrics_opt.enabled) {
+        pipeline.set_metrics(&metrics);
+        std::cout << "[OK] Instrumentacja metryk WŁĄCZONA.\n";
+    }
+
     std::mutex frame_mutex;
     cv::Mat display_frame;
     bool frame_ready = false;
@@ -176,6 +187,25 @@ int main(int argc, char** argv) {
     }
 
     cv::destroyAllWindows();
+
+    if (metrics_opt.enabled) {
+        const std::filesystem::path output_dir = oa::resolve_output_dir(argc, argv);
+        const std::filesystem::path csv_path =
+            metrics_opt.csv_path.empty()
+                ? (output_dir / "metrics_replay.csv")
+                : std::filesystem::path(metrics_opt.csv_path);
+        const std::filesystem::path json_path =
+            metrics_opt.json_path.empty()
+                ? (output_dir / "metrics_replay_summary.json")
+                : std::filesystem::path(metrics_opt.json_path);
+
+        metrics.write_csv(csv_path.string());
+        metrics.write_summary_json(json_path.string());
+        metrics.print_summary(std::cout);
+        std::cout << "[OK] Metryki (CSV):  " << csv_path << "\n";
+        std::cout << "[OK] Metryki (JSON): " << json_path << "\n";
+    }
+
     std::cout << "[OK] Odtwarzanie zakończone.\n";
     return 0;
 }
