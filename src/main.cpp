@@ -13,7 +13,9 @@
 
 #include "bias_configurator.hpp"
 #include "detection_pipeline.hpp"
+#include "metrics_cli.hpp"
 #include "output_paths.hpp"
+#include "perf_metrics.hpp"
 #include "sensor_config.hpp"
 
 static std::atomic<bool> g_running{true};
@@ -83,6 +85,16 @@ int main(int argc, char** argv) {
     std::mutex file_mutex;
     oa::DetectionPipeline pipeline(sensor_w, sensor_h);
 
+    // ── Opcjonalna instrumentacja wydajności (--metrics / --metrics-json) ────
+    const oa::MetricsCliOptions metrics_opt = oa::parse_metrics_cli(argc, argv);
+    oa::PerfMetrics metrics(static_cast<double>(oa::config::SLICE_DURATION_US));
+    if (metrics_opt.enabled) {
+        pipeline.set_metrics(&metrics);
+        std::cout << "[OK] Instrumentacja metryk WŁĄCZONA.\n";
+    }
+
+    bool prev_danger = false;  // zbocze flagi kolizji między slice'ami
+
     camera.cd().add_callback(
         [&](const Metavision::EventCD* begin, const Metavision::EventCD* end) {
             if (!g_running) return;
@@ -112,6 +124,18 @@ int main(int argc, char** argv) {
                     static constexpr const char* SECTOR_NAMES[] =
                         {"LEWY", "CENTRALNY", "PRAWY"};
 
+                    // Trwały komunikat na początku epizodu kolizji (zbocze
+                    // narastające danger), aby nie został nadpisany przez
+                    // jednoliniowy status \r.
+                    if (ttc.danger && !prev_danger) {
+                        std::cout
+                            << "\r\033[K"
+                            << "\n[⚠ KOLIZJA] " << ttc.alert
+                            << " | Centroid:(" << track.cx << "," << track.cy << ")"
+                            << " Sektor:" << SECTOR_NAMES[track.dominant_sector]
+                            << "\n";
+                    }
+
                     std::cout
                         << "\r\033[K"
                         << "[DETEKCJA] "
@@ -131,6 +155,8 @@ int main(int argc, char** argv) {
                         << track.total_events
                         << std::flush;
                 }
+
+                prev_danger = ttc.danger;
             }
         }
     );
@@ -174,6 +200,24 @@ int main(int argc, char** argv) {
         filtered_file.close();
     }
     std::cout << "[OK] Plik przefiltrowany zamknięty:   " << filtered_path << "\n";
+
+    if (metrics_opt.enabled) {
+        const std::filesystem::path csv_path =
+            metrics_opt.csv_path.empty()
+                ? (output_dir / "metrics_live.csv")
+                : std::filesystem::path(metrics_opt.csv_path);
+        const std::filesystem::path json_path =
+            metrics_opt.json_path.empty()
+                ? (output_dir / "metrics_live_summary.json")
+                : std::filesystem::path(metrics_opt.json_path);
+
+        metrics.write_csv(csv_path.string());
+        metrics.write_summary_json(json_path.string());
+        metrics.print_summary(std::cout);
+        std::cout << "[OK] Metryki (CSV):     " << csv_path << "\n";
+        std::cout << "[OK] Metryki (JSON):    " << json_path << "\n";
+    }
+
     std::cout << "[OK] System unikania przeszkód zatrzymany.\n";
 
     return 0;

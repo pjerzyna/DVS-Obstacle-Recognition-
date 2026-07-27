@@ -17,8 +17,36 @@ FrameOutput DetectionPipeline::process_slice(TimeSlice slice) {
     FrameOutput out;
     out.events  = std::move(slice.events);
     out.end_ts  = slice.end_ts;
-    out.track   = tracker_.process(out.events, slice.end_ts);
-    out.ttc     = ttc_estimator_.estimate(out.track, slice.end_ts);
+
+    if (metrics_) {
+        const auto t0 = PerfMetrics::Clock::now();
+        out.track = tracker_.process(out.events, slice.end_ts);
+        const auto t1 = PerfMetrics::Clock::now();
+        out.ttc   = ttc_estimator_.estimate(out.track, slice.end_ts);
+        const auto t2 = PerfMetrics::Clock::now();
+
+        PerfMetrics::SliceRecord rec;
+        rec.end_ts_us      = static_cast<std::int64_t>(slice.end_ts);
+        rec.slice_events   = out.events.size();
+        rec.tracker_us     = PerfMetrics::to_us(t0, t1);
+        rec.ttc_us         = PerfMetrics::to_us(t1, t2);
+        rec.slice_total_us = PerfMetrics::to_us(t0, t2);
+        rec.filter_buffer  = filter_.temporal_buffer_size();
+        rec.ttc_history    = ttc_estimator_.history_size();
+        rec.valid          = out.track.valid;
+        rec.danger         = out.ttc.danger;
+        rec.sector         = out.track.dominant_sector;
+        rec.ttc_value      = out.track.valid
+                                 ? out.ttc.ttc[out.track.dominant_sector]
+                                 : -1.f;
+        rec.expanding       = out.ttc.expanding;
+        rec.growth_rate     = out.ttc.growth_rate;
+        rec.relative_growth = out.ttc.relative_growth;
+        metrics_->record_slice(rec);
+    } else {
+        out.track = tracker_.process(out.events, slice.end_ts);
+        out.ttc   = ttc_estimator_.estimate(out.track, slice.end_ts);
+    }
     return out;
 }
 
@@ -33,7 +61,16 @@ std::vector<FrameOutput> DetectionPipeline::process(
     }
 
     last_filtered_.clear();
-    filter_.filter(begin, raw_count, last_filtered_);
+
+    if (metrics_) {
+        const auto t0 = PerfMetrics::Clock::now();
+        filter_.filter(begin, raw_count, last_filtered_);
+        const auto t1 = PerfMetrics::Clock::now();
+        metrics_->record_batch(raw_count, last_filtered_.size(),
+                               PerfMetrics::to_us(t0, t1));
+    } else {
+        filter_.filter(begin, raw_count, last_filtered_);
+    }
 
     if (!last_filtered_.empty()) {
         slicer_.push(last_filtered_.data(), last_filtered_.size());

@@ -361,5 +361,7 @@ CMakeFiles/optical_avoidance.dir/src/main.cpp.o: \
  /home/sterydy/projekt/ver2/optical_avoidance/include/neighborhood_filter.hpp \
  /usr/include/c++/12/deque /usr/include/c++/12/bits/stl_deque.h \
  /usr/include/c++/12/bits/deque.tcc \
+ /home/sterydy/projekt/ver2/optical_avoidance/include/perf_metrics.hpp \
  /home/sterydy/projekt/ver2/optical_avoidance/include/ttc_estimator.hpp \
+ /home/sterydy/projekt/ver2/optical_avoidance/include/metrics_cli.hpp \
  /home/sterydy/projekt/ver2/optical_avoidance/include/output_paths.hpp

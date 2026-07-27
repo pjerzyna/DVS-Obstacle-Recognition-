@@ -76,6 +76,25 @@ target_link_libraries(replay_viewer
         OpenMP::OpenMP_CXX
 )
 
+# Headless benchmark — bez OpenCV, do powtarzalnych pomiarów i sweepów.
+add_executable(benchmark
+    src/benchmark.cpp
+    ${ALGO_SOURCES}
+)
+
+target_include_directories(benchmark
+    PRIVATE
+        ${CMAKE_SOURCE_DIR}/include
+)
+
+target_link_libraries(benchmark
+    PRIVATE
+        MetavisionSDK::base
+        MetavisionSDK::core
+        MetavisionSDK::stream
+        OpenMP::OpenMP_CXX
+)
+
 message(STATUS "Build type    : ${CMAKE_BUILD_TYPE}")
 message(STATUS "Metavision SDK: found")
 message(STATUS "OpenMP        : ${OpenMP_CXX_VERSION}")

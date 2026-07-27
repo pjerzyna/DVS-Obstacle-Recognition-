@@ -1,16 +1,25 @@
 #pragma once
 #include <cstdint>
 
+// Parametry nadpisywalne przy kompilacji (do przemiatania), np.:
+//   -DOA_SLICE_DURATION_US=5000  -DOA_TEMPORAL_WINDOW_US=2000
+#ifndef OA_SLICE_DURATION_US
+#define OA_SLICE_DURATION_US 10000
+#endif
+#ifndef OA_TEMPORAL_WINDOW_US
+#define OA_TEMPORAL_WINDOW_US 3000
+#endif
+
 namespace oa::config {
 
 inline constexpr int DEFAULT_SENSOR_W = 320;
 inline constexpr int DEFAULT_SENSOR_H = 320;
 
 /// Okno przetwarzania trackera/TTC — wspólne dla live i replay.
-inline constexpr int64_t SLICE_DURATION_US = 10000; // 10 ms
+inline constexpr int64_t SLICE_DURATION_US = OA_SLICE_DURATION_US; // 10 ms
 
 /// Okno filtra czasowo-przestrzennego.
-inline constexpr int64_t TEMPORAL_WINDOW_US = 3000; // 3 ms — więcej kontekstu dla sąsiadów
+inline constexpr int64_t TEMPORAL_WINDOW_US = OA_TEMPORAL_WINDOW_US; // 3 ms — więcej kontekstu dla sąsiadów
 
 /// Kalibracja tła: pierwsze N slice'ów tylko obserwacja.
 inline constexpr int CALIBRATION_SLICES = 30;
