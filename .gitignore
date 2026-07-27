@@ -7,8 +7,21 @@ data_in/
 # Ignore virtual environment and generated files
 .vscode/
 venv/
+.venv/
+
+# Python
+tools/.venv/
 __pycache__/
+*.pyc
+.mplcache/
+tools/.mplcache/
+
+# C++ & Build
+build/
+*.o
+*.so
+*.a
+bin/
 
 # My previous implementations
 brick-a-brack/
-build/
