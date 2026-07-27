@@ -11,3 +11,4 @@ __pycache__/
 
 # My previous implementations
 brick-a-brack/
+build/
