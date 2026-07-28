@@ -1,4 +1,0 @@
-value,throughput_mev_s,tracker_mean_us,filter_mean_us,slice_p99_us,filter_rejection_pct,valid_slices,danger_slices,danger_episodes
-1.0,13.7372,18.1461,17.5141,120.3071,27.6037,2496,375,160
-2.0,16.353,12.0392,15.1102,90.0592,40.2694,2402,412,161
-3.0,17.6657,9.0487,14.2449,70.7432,51.378,2233,387,158

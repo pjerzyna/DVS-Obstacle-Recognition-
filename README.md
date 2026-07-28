@@ -1,4 +1,4 @@
-# DVS Obstacle Recognition: Real-Time Event-Based Optical Avoidance on Edge Devices
+# DVS Obstacle Avoidance: Looming Detection and Time-to-Collision on a Raspberry Pi 5.......
 
 [![Platform](https://img.shields.io/badge/Platform-Raspberry%20Pi%205-red.svg)](https://www.raspberrypi.com/)
 [![Sensor](https://img.shields.io/badge/Sensor-Prophesee%20GenX320-blue.svg)](https://www.prophesee.ai/)
@@ -8,26 +8,36 @@
 
 > **Course Project**: Dynamic Vision Sensors  
 > **Authors**: [Paweł Jerzyna](https://github.com/pjerzyna), Piotr Grzyb, Marcin Dworak  
-> **Method**: ORB-inspired keypoint pipeline + RANSAC homography, implemented from scratch in Python/NumPy
-> **Tech Stack**: Python (Pandas, SQLAlchemy, Faker), MySQL, PowerBI
+> **Method**: > **Method**: Event-based looming detection with kinematic TTC estimation, implemented from scratch in C++17 with ARM NEON SIMD
 
-################## TO DO ############## 
----
 
 ## 📌 Executive Summary / TL;DR
 
-This repository delivers a **real-time, bio-inspired optical avoidance system** designed for resource-constrained edge hardware (Raspberry Pi 5) coupled with a neuromorphic event-based camera (**Prophesee GenX320**). 
+This repository delivers a bio-inspired optical avoidance system designed for resource-constrained edge hardware (Raspberry Pi 5) coupled with a neuromorphic event-based camera (Prophesee GenX320). This code for now is working only with recorded videos, launching it in real-time doesn't work. 
 
-By eschewing dense Deep Neural Networks (DNNs) and heavy Contrast Maximization (CM) algorithms—which cause severe CPU saturation and stream desynchronization on edge devices—this C++ pipeline mimics the **looming detection and escape reflexes of flying insects**. It extracts dynamic 2D bounding boxes using **vectorized ARM NEON SIMD instructions** and evaluates a kinematic **Time-to-Collision (TTC)** surface expansion metric.
+> **⚠️ Project status:** the detection pipeline is validated offline. All benchmarks below were measured on real sensor recordings replayed on the target hardware.
 
-* 🎬 **[Demo Video 1 (Real-time detection)](./docs_performance/media/demonstrator1.mp4)**
-* 🎬 **[Demo Video 2 (TTC Alert)](./docs_performance/media/demonstrator2.mp4)**
+Dense DNNs and Contrast Maximization saturate the CPU and desynchronization the event-stream on edge devices. Instead, this C++ pipeline mimics the looming detection and escape reflexes of flying insects. It extracts dynamic 2D bounding boxes via ARM NEON SIMD and evaluates a kinematic Time-to-Collision (TTC) surface expansion metric.
 
-### Key Benchmark Metrics (Raspberry Pi 5 @ $320 \times 320$ resolution)
-* ⚡ **Mean Core Latency**: **~0.13 ms** per 10 ms slice (**<1.3%** of single-core real-time budget).
-* 🚀 **Real-Time Processing Margin**: **76×** factor (processed 26.6 s of high-density event data containing 7.14M events in just **350 ms** CPU time).
-* 🛡️ **Zero Packet Loss**: **0%** slice deadline overruns; sustained deterministic **100 Hz** output cadence.
-* 💻 **Ultra-Low Resource Footprint**: Consumes **< 2%** single-core CPU load, leaving remaining cores free for drone flight controller integration (PX4 / ArduPilot).
+
+<div align="center">
+
+![Obstacle detection and TTC collision alert on Raspberry Pi 5](docs/media/demonstrator2.gif)
+
+***TTC-based collision alerting - Prophesee GenX320 + Raspberry Pi 5***
+
+</div>
+
+
+### Key Benchmark Metrics
+
+* ⚡ **Mean Core Latency**: **~0.13 ms** per 10 ms slice (1.3% of the single-core real-time budget).
+* 🚀 **Real-Time Margin**: **76×** factor (26.6 s of events (7.14 M) processed in 350 ms CPU).
+* 🛡️ **Zero Packet Loss**: **0%** slice deadline overruns; sustained deterministic 100 Hz output cadence.
+* 💻 **CPU load**: Consumes **< 2%** single-core CPU load, leaving headroom for PX4 / ArduPilot integration.
+
+
+📄 Performance metrics and analysis of computational and parametric complexity: **[docs/performance.md](docs/performance.md)**
 
 ---
 
