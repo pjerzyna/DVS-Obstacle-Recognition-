@@ -1,4 +1,4 @@
-# DVS Obstacle Avoidance: Looming Detection and Time-to-Collision on a Raspberry Pi 5
+# Dynamic Vision Sensor Obstacle Avoidance: Looming Detection and Time-to-Collision on a Raspberry Pi 5
 
 [![Platform](https://img.shields.io/badge/Platform-Raspberry%20Pi%205-red.svg)](https://www.raspberrypi.com/)
 [![Sensor](https://img.shields.io/badge/Sensor-Prophesee%20GenX320-blue.svg)](https://www.prophesee.ai/)
@@ -32,7 +32,7 @@ Dense DNNs and Contrast Maximization saturate the CPU and desynchronization the 
 ### Key Benchmark Metrics
 
 * ⚡ **Mean Core Latency**: **~0.13 ms** per 10 ms slice (1.3% of the single-core real-time budget).
-* 🚀 **Real-Time Margin**: **76×** factor (26.6 s of events (7.14 M) processed in 350 ms CPU).
+* 🚀 **Real-Time Margin**: **82×** factor (26.6 s of events (7.14 M) processed in 350 ms CPU).
 * 🛡️ **Zero Packet Loss**: **0%** slice deadline overruns; sustained deterministic 100 Hz output cadence.
 * 💻 **CPU load**: Consumes **< 2%** single-core CPU load, leaving headroom for PX4 / ArduPilot integration.
 
@@ -73,112 +73,113 @@ A safety-critical collision alert is triggered whenever:
 $$TTC_s(t) < \tau_{\text{danger}} \quad (\tau_{\text{danger}} = 0.45\text{ s})$$
 
 
-## 📊 Performance Benchmarks & Comparison
+## 📊 Performance Benchmarks
 
-### Detailed Per-Stage Execution Latency (Raspberry Pi 5)
-*Benchmark Dataset: 7.14M events, $320 \times 320$ resolution, 26.6 seconds real-world recording.*
+All figures below come from a single benchmark run on the artifacts committed
+in [`docs/output/`](docs/output/) - recording `wykryty_ruch.raw`, 320 × 320,
+7 143 802 events over 26.62 s, replayed on a Raspberry Pi 5.
 
-| Pipeline Stage | Mean Latency | p99 Latency | Max Latency | Operational Scaling |
+### Per-stage execution latency
+
+| Pipeline stage | Mean | p99 | Max | Scaling |
 | :--- | :---: | :---: | :---: | :--- |
-| **Neighborhood Filter** *(per packet)* | **11.7 µs** | 34.3 µs | 1618 µs | $O(N + W \cdot H)$ (map rebuild) |
-| **Geometric Tracker** *(per 10ms slice)* | **14.2 µs** | 97.1 µs | 838 µs | $O(N)$ ($\sim 9\text{ ns/event}$ SIMD) |
-| **Kinematic TTC Estimator** *(per slice)*| **0.9 µs** | 20.1 µs | 91 µs | $O(1)$ ($\le 7$ history samples) |
-| **Tracker + TTC Total** *(per slice)* | **15.1 µs** | **104.5 µs** | **839 µs** | **Mean core cost: 0.13 ms / slice** |
+| **Spatiotemporal Filter** *(per SDK packet)* | **10.8 µs** | 30.1 µs | 4123 µs ⁽¹⁾ | $O(B + W \cdot H)$ - dominated by map rebuild |
+| **Geometric Tracker** *(per 10 ms slice)* | **13.9 µs** | 89.3 µs | 1102 µs ⁽¹⁾ | $O(N)$ - 9.06 ns/event |
+| **TTC Estimator** *(per slice)* | **0.76 µs** | 16.7 µs | 51 µs | $O(H_w)$ ≈ $O(1)$ - ≤ 7 samples |
+| **Tracker + TTC** *(per slice)* | **14.7 µs** | 92.9 µs | 1102 µs | — |
 
-### Benchmark vs. Standard State-of-the-Art Solutions
-
-| Metric / Framework | Contrast Maximization (CM) | Deep Neural Network (ResNet34) | **Our Bio-Inspired Pipeline** |
-| :--- | :---: | :---: | :---: |
-| **CPU Core Load** | 100% (CPU Saturation) | 100% (High Thermal Throttling) | **< 2% Single Core Load** |
-| **Packet Processing Latency** | > 110 ms | > 150 ms | **0.13 ms (Mean)** |
-| **Stream Stability** | ❌ Desynchronization / Errors | ❌ Heavy Latency Bottlenecks | **`100% Deterministic (0% Loss)`** |
-| **Real-Time Factor** | < 0.1× (Unusable) | Non-real-time without NPU/GPU | **`76× Real-Time Margin`** |
-
----
-
-## 🛠️ Hardware & Prerequisites
-
-### Hardware Requirements
-* **Sensor**: Prophesee GenX320 Neuromorphic Event Camera ($320 \times 320$ sensor array).
-* **Processing Board**: Raspberry Pi 5 (Broadcom BCM2712 Quad-core ARM Cortex-A76 @ 2.4 GHz, 8GB/16GB RAM).
-
-### Software Dependencies
-* **Operating System**: Raspberry Pi OS (64-bit / Debian Bookworm).
-* **Compiler**: GCC / G++ (C++17 support required).
-* **Libraries**:
-  * [Prophesee Metavision SDK](https://www.prophesee.ai/metavision-intelligence/) (`metavision-sdk-base`, `core`, `stream`)
-  * OpenCV 4.x (Required for offline visualization companion tool `replay_viewer`)
-  * CMake $\ge 3.16$
-
----
-
-## 💻 Build & Installation
-
-1. **Clone the Repository:**
-   ```bash
-   git clone [https://github.com/pjerzyna/DVS-Obstacle-Recognition-.git](https://github.com/pjerzyna/DVS-Obstacle-Recognition-.git)
-   cd DVS-Obstacle-Recognition-
+⁽¹⁾ **The tail is environmental, not algorithmic.** Filter latency is
+uncorrelated with packet size ($r = 0.03$), and the three largest outliers all
+occur within the first 250 of 26 386 packets. Discarding a 500-packet warm-up
+drops the filter maximum from 4123 µs to 533 µs while leaving the mean, median
+and p99 unchanged. The tracker maximum occurs at N = 1940 events, not at the
+largest slice (N = 26 121). Cold caches and OS scheduling, not workload.
 
 
 
-## Build on rpi
-1. Configure & Compile:
 
-Bash
+### Aggregate throughput
+| | Value |
+| :--- | :---: |
+| Total CPU time | **325 ms** for 26.62 s of events |
+| Mean cost per 10 ms slice | **0.122 ms** *(= 324 832 µs / 2663 slices, filter + tracker + TTC)* |
+| Real-time factor | **82×** |
+| Throughput | **22.0 Mev/s** |
+| Slice deadline overruns (> 10 ms) | **0.00%** (0 / 2663) |
+| Single-core utilization | **1.22%** |
+| Filter rejection rate | 27.6% (7.14 M → 5.17 M events) |
+| Peak filter buffer / TTC history | 9830 events / 7 samples |
 
-mkdir build && cd build
-cmake -DCMAKE_BUILD_TYPE=Release ..
-make -j4
+### Parameter sensitivity — `OA_FILTER_MIN_NEIGHBORS`
 
-(Note: The CMakeLists.txt automatically passes -O3 -mcpu=cortex-a76 flags to enable compiler auto-vectorization for ARM NEON SIMD lanes.)
+| Value | Filter rejection | Tracker mean | Slice p99 | Throughput | Detections | Danger slices |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| **1** *(default)* | 27.6% | 18.1 µs | 120.3 µs | 13.7 Mev/s | 2496 | 375 |
+| 2 | 40.3% | 12.0 µs | 90.1 µs | 16.4 Mev/s | 2402 | 412 |
+| 3 | 51.4% | 9.0 µs | 70.7 µs | 17.7 Mev/s | 2233 | 387 |
 
-# 🚀 Running the Executables
+A more aggressive filter speeds up the tracker and tightens the latency tail at
+the cost of detections. Throughput here is lower than in a clean single run.
 
-1. Live Operation on Raspberry Pi 5 (optical_avoidance)
-
-To run the live headless engine directly connected to the GenX320 sensor via USB:
-
-Bash
-
-$ ./optical_avoidance
-
-Terminal Output Example:
-Plaintext (yes, it is in polish language)
-
-[DETEKCJA] Centroid: (267, 159) BB: [105x175] Kierunek: W LEWO Sektor: CENTRALNY Punkty: 104
-[A KOLIZJA] KOLIZJA CENTRALNY TTC=0.32s | Centroid: (267, 159) Sektor: CENTRALNY
-
-
-2. Offline Replay & OpenCV Visualization (replay_viewer)
-
-To replay a previously recorded .evt3 event file with bounding box overlays, sector grid lines, and visual TTC alerts:
-Bash
-
-./replay_viewer /path/to/recording.evt3
+## 🔮 Roadmap
 
 
+Ordered by priority. Items marked 🔴 block the project's core claim; 🟡 improve
+correctness or rigour; 🟢 extend capability.
 
-## 📁 Repository Structure
-   
-   .
-   ├── CMakeLists.txt          # Build configuration with ARM NEON optimizations
-   ├── include/                # Header files (DetectionPipeline, Filter, Tracker, TTC)
-   ├── src/                    # Implementation modules (.cpp)
-   │   ├── optical_avoidance.cpp # Main executable for live sensor engine
-   │   └── replay_viewer.cpp     # Offline OpenCV visualization companion tool
-   ├── docs/                   # Academic paper, diagrams, presentation slides
-   ├── tools/                  # Auxiliary scripts & configuration files
-   └── README.md               # Project documentation
+### 🔴 Live capture on the GenX320
 
-🔮 Future Work & Roadmap
+The processing pipeline sustains an 82× real-time margin on recorded streams, but the live path has never been brought up on Raspberry Pi 5 — until it is, every claim in this repository is an offline one. Requires diagnosing Metavision live-camera initialization, then re-measuring end-to-end latency including sensor I/O and USB transfer, which the current benchmark deliberately excludes.
 
-    Inertial Sensor Fusion (IMU): Integrate continuous-time gyro/accelerometer data to cancel out the drone's own ego-motion and prevent false-positive expansion alerts during banking/pitch maneuvers.
+### 🟡 Correctness and rigour
 
-    Multi-Obstacle Connected-Component Clustering: Replace the single bounding box abstraction with multi-cluster tracking to handle complex environments containing multiple moving hazards.
+- [ ] **Fix the TTC constant.** Projected area scales as $Z^{-2}$, so
+      $TTC = 2A/\dot{A}$, not $A/\dot{A}$ — the current formula reports half the
+      true time-to-collision. Rescaling $\tau_{\text{danger}}$ from 0.45 s to
+      0.90 s leaves behaviour bit-identical (verified: max TTC among expanding
+      slices is 0.300 s, so both thresholds sit on the same plateau).
+- [ ] **Make the TTC threshold meaningful.** The relative-growth gate bounds TTC
+      at $T_w(1+\rho_{\min})/\rho_{\min} = 0.300$ s, so $\tau_{\text{danger}}$
+      currently rejects nothing — `expanding` implies `danger` in 375/375 cases.
+      Either lower it to ≈ 0.15–0.20 s or drop it and document the growth gates
+      as the actual decision rule.
+- [ ] **Alert hysteresis.** The `danger` flag averages **12 transitions per
+      second**, with a median episode of a single 10 ms slice (88 of 160
+      episodes last one slice). An N-of-M debounce or minimum alert duration is
+      a prerequisite for any control-loop integration.
+- [ ] **Labelled evaluation set.** No ground truth exists, so precision, recall
+      and PR/ROC curves cannot be computed and no accuracy claim is currently
+      defensible. `tools/param_sweep.py` already accepts a `--labels` file
+      (`start_us,end_us`); it just needs the labels.
+- [ ] **Validate beyond one recording.** Thresholds are tuned on a single
+      26.6 s clip. Varying lighting, textures, approach angles and object sizes
+      is needed before any generalization claim.
 
-    Closed-Loop Flight Integration: Connect the C++ decision engine directly to a PX4 / ArduPilot flight controller via MAVLink to translate TTC warnings into active evasive thrust vectors.
+### 🟡 Performance
 
+- [ ] **Eliminate the `build_map()` clear.** Zeroing the full 320×320 map every
+      SDK packet costs ≈ 2.7 billion operations per run and dominates filter
+      cost — packets average only 270 events. A timestamp-stamped map removes
+      the clear entirely; results are unchanged.
+- [ ] **Replace `FrameSlicer::pop_ready`'s `erase(begin())`.** `O(R)` per pop on
+      a `std::vector` degrades to `O(R²)` when catching up on a backlog. A
+      `std::deque` or a read index fixes it.
+- [ ] **Benchmark warm-up.** Latency maxima are startup artifacts — discarding
+      500 packets drops the filter maximum from 4123 µs to 533 µs with no change
+      to mean, median or p99.
 
-🙏 Acknowledggments
+### 🟢 Capability
 
+- [ ] **IMU fusion.** Ego-motion during banking and pitch produces global optical
+      expansion indistinguishable from an approaching obstacle. Continuous-time
+      gyro/accelerometer integration would cancel it and remove a whole class of
+      false positives — the largest correctness gap for airborne use.
+- [ ] **Multi-obstacle clustering.** Replace the single bounding box per sector
+      with connected-component tracking, so scenes with several independent
+      hazards are handled rather than collapsed into one box.
+- [ ] **Closed-loop flight integration.** Bridge the decision engine to
+      PX4 / ArduPilot over MAVLink, translating TTC warnings into evasive
+      thrust vectors. Depends on live capture, hysteresis, and IMU fusion.
+
+## 🙏 Acknowledggments
 Special thanks to the Embedded Vision Systems Group at the AGH University of Krakow for providing hardware access, testing facilities, and research guidance throughout this project.
