@@ -8,7 +8,8 @@
 
 > **Course Project**: Dynamic Vision Sensors  
 > **Authors**: [Paweł Jerzyna](https://github.com/pjerzyna), Piotr Grzyb, Marcin Dworak  
-
+> **Method**: ORB-inspired keypoint pipeline + RANSAC homography, implemented from scratch in Python/NumPy
+> **Tech Stack**: Python (Pandas, SQLAlchemy, Faker), MySQL, PowerBI
 
 ################## TO DO ############## 
 ---
@@ -18,6 +19,9 @@
 This repository delivers a **real-time, bio-inspired optical avoidance system** designed for resource-constrained edge hardware (Raspberry Pi 5) coupled with a neuromorphic event-based camera (**Prophesee GenX320**). 
 
 By eschewing dense Deep Neural Networks (DNNs) and heavy Contrast Maximization (CM) algorithms—which cause severe CPU saturation and stream desynchronization on edge devices—this C++ pipeline mimics the **looming detection and escape reflexes of flying insects**. It extracts dynamic 2D bounding boxes using **vectorized ARM NEON SIMD instructions** and evaluates a kinematic **Time-to-Collision (TTC)** surface expansion metric.
+
+* 🎬 **[Demo Video 1 (Real-time detection)](./docs_performance/media/demonstrator1.mp4)**
+* 🎬 **[Demo Video 2 (TTC Alert)](./docs_performance/media/demonstrator2.mp4)**
 
 ### Key Benchmark Metrics (Raspberry Pi 5 @ $320 \times 320$ resolution)
 * ⚡ **Mean Core Latency**: **~0.13 ms** per 10 ms slice (**<1.3%** of single-core real-time budget).

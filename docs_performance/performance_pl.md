@@ -1,8 +1,8 @@
-# Wydajność i złożoność — optical_avoidance
+# Wydajność i złożoność - optical_avoidance
 
-Dokument opisuje (1) metryki wydajności wbudowane w pipeline detekcji oraz
-(2) analizę złożoności obliczeniowej i parametrycznej. Instrumentacja jest
-opcjonalna i **zerowo-narzutowa, gdy wyłączona** (bramkowana wskaźnikiem
+Dokument opisuje metryki wydajności wbudowane w pipeline detekcji oraz
+analizę złożoności obliczeniowej i parametrycznej. Instrumentacja jest
+opcjonalna i zerowo-narzutowa, gdy wyłączona (bramkowana wskaźnikiem
 `PerfMetrics*` w `DetectionPipeline`).
 
 Pipeline (wspólny dla `main` live i `replay_viewer`):
@@ -35,9 +35,7 @@ Wszystkie trzy binarki przyjmują te same flagi:
 ./build/optical_avoidance --metrics
 ```
 
-- Bez flagi `--metrics`/`--metrics-json` zachowanie jest **identyczne jak dotąd**.
-- Gdy ścieżka jest pominięta, pliki trafiają do katalogu `output/`
-  (`resolve_output_dir`, ten sam mechanizm co nagrania `.raw`).
+- Gdy ścieżka jest pominięta, pliki trafiają do katalogu `output/`.
 - `benchmark` domyślnie odtwarza plik „tak szybko jak CPU pozwala”
   (`FileConfigHints::real_time_playback(false)`); flaga `--realtime` przywraca
   tempo nagrania.
@@ -49,15 +47,14 @@ wokół każdego etapu i zapisuje dwa poziomy danych:
 
 **Per paczka SDK** (`*_batches.csv`): `raw_events`, `filtered_events`, `filter_us`.
 
-**Per slice (10 ms)** (główny CSV): `slice_events`, `tracker_us`, `ttc_us`,
-`slice_total_us` (=tracker+ttc), `filter_buffer` (rozmiar `temporal_buffer_`),
-`ttc_history` (najw. okno `history_`), `valid`, `danger`, `sector`, `ttc_value`
-(TTC sektora dominującego), `expanding`, `growth_rate`, `relative_growth`.
+**Per slice (10 ms)** (główny CSV): `slice_events`, `tracker_us`, `ttc_us`, `slice_total_us`, `filter_buffer`, `temporal_buffer_`, `ttc_history`, `valid`, `danger`, `sector`, `ttc_value`, `expanding`, `growth_rate`, `relative_growth`.
+
+slice_total_us=tracker+ttc
 
 | Metryka | Definicja |
 |---|---|
-| **Throughput** | `total_raw_events / suma_czasów_etapów` [Mev/s] |
-| **Real-time factor** | `czas_zdarzeń_pokryty / czas_przetwarzania` (×) |
+| **Throughput** | `total_raw_events` / suma_czasów_etapów [Mev/s] |
+| **Real-time factor** | czas_zdarzeń_pokryty / czas_przetwarzania (×) |
 | **Latencja per-etap** | mean / median / p95 / p99 / max [µs] dla filter, tracker, ttc, tracker+ttc |
 | **Budget overrun** | % slice'ów, w których tracker+ttc > 10 ms |
 | **Peak buffer** | szczytowy rozmiar `temporal_buffer_` (filtr) i `history_` (TTC) |
@@ -111,22 +108,22 @@ filtra, `Hwin = GROWTH_WINDOW_US / SLICE_DURATION_US` — liczba próbek w oknie
 | Etap | Operacja dominująca | Złożoność | Uwagi |
 |---|---|---|---|
 | `NeighborhoodFilter::filter` | `build_map()` → `std::fill` po całej mapie | **O(B + W·H + Buf)** | `W·H` dominuje przy małych paczkach (śr. 270 zdarzeń); patrz niżej |
-| → `purge_old` | `pop_front` z deque | O(usuniętych) amort. | |
+| → `purge_old` | `pop_front` z deque | O(usuniętych) | |
 | → pętla sąsiedztwa | 4 lookupy/zdarzenie | O(B) | O(1) na zdarzenie |
-| `FrameSlicer::push` | `push_back` + emisja | O(B) amort. | |
+| `FrameSlicer::push` | `push_back` + emisja | O(B) | |
 | `FrameSlicer::pop_ready` | `erase(begin())` na `vector` | **O(R)** na pop | R = gotowe slice'y; zwykle 1, ale O(R²) przy zaległościach |
 | `ObstacleTracker::process` | jeden przebieg po zdarzeniach | **O(N)** | bbox/centroid/sektory w jednym przejściu |
 | `TtcEstimator::estimate` | okno przesuwne na deque | **O(Hwin) ≈ O(1)** | Hwin ograniczone (peak 7) |
 
 ### 2.1 Potwierdzenie empiryczne
 
-- **Tracker = O(N) liniowo.** Dopasowanie liniowe: `≈ 9,06 ns/zdarzenie`
-  (`latency_vs_events.png`). Współczynnik stały bliski 0 — brak narzutu poza
+- **Tracker = O(N) liniowo.** Dopasowanie liniowe: ≈ 9,06 ns/zdarzenie
+  (`latency_vs_events.png`). Współczynnik stały bliski 0 tj. brak narzutu poza
   przejściem po zdarzeniach.
 - **TTC ≈ O(1).** Mediana 0,1 µs, `peak_ttc_history = 7` — niezależne od `N`.
 - **Filtr zdominowany przez `W·H`, nie przez zdarzenia.** Średnia paczka to ~270
   zdarzeń, a `filter_us` ma medianę 9,3 µs — co odpowiada `std::fill` ~100 kB
-  mapy (memset), a nie liczbie zdarzeń. To główne **wąskie gardło stałokosztowe**:
+  mapy (memset), a nie liczbie zdarzeń. To główne wąskie gardło stałokosztowe:
   `26 386 paczek × 102 400 komórek ≈ 2,7 mld` operacji zerowania mapy.
 
 ### 2.2 Zidentyfikowane wąskie gardła i kierunki optymalizacji
@@ -151,7 +148,7 @@ powyższe to optymalizacje „na zapas”/pod większe sceny, nie konieczność.
 
 ### 3.1 Inwentaryzacja parametrów
 
-Wszystkie parametry poniżej są **nadpisywalne przy kompilacji** (makra `OA_*`)
+Wszystkie parametry poniżej są nadpisywalne przy kompilacji (makra `OA_*`)
 bez zmiany wartości domyślnych — co umożliwia przemiatanie (`tools/param_sweep.py
 sweep`). Domyślne zachowanie pozostaje niezmienione.
 
@@ -164,7 +161,7 @@ sweep`). Domyślne zachowanie pozostaje niezmienione.
 | `MIN_DETECTION_THRESH` / `MIN_SECTOR_MIN_EVENTS` | `sensor_config.hpp` | 35 / 10 | — | dolne ograniczenie progów adaptacyjnych |
 | `SLICE_EVENT_RATIO_PCT` / `SECTOR_EVENT_RATIO_PCT` | `sensor_config.hpp` | 12 / 8 | 5–25 | progi względne (% zdarzeń) — łagodzą próg przy słabym sygnale |
 | `OA_TTC_GROWTH_WINDOW_US` | `ttc_estimator.hpp` | 60000 | 30000–120000 | okno wzrostu netto bbox; definiuje `Hwin` |
-| `OA_TTC_MIN_GROWTH_RATE` | `ttc_estimator.hpp` | 1500 px²/s | 500–4000 | min. tempo wzrostu pola → odrzuca wiatrak |
+| `OA_TTC_MIN_GROWTH_RATE` | `ttc_estimator.hpp` | 1500 px²/s | 500–4000 | min. tempo wzrostu pola → odrzuca wiatrak itp. |
 | `OA_TTC_MIN_RELATIVE_GROWTH` | `ttc_estimator.hpp` | 0.25 | 0.1–0.5 | min. względny przyrost w oknie → odrzuca oscylacje |
 | `OA_TTC_DANGER_THRESHOLD_S` | `ttc_estimator.hpp` | 0.45 s | 0.2–1.0 | próg alarmu kolizji; ↓ = mniej fałszywych alarmów, później ostrzega |
 
@@ -187,7 +184,7 @@ python tools/param_sweep.py ttc-sweep output/metrics_benchmark.csv \
 ```
 
 Z opcjonalnym plikiem etykiet (`start_us,end_us` realnych kolizji) generuje
-krzywe **PR i ROC** po `TTC_DANGER_THRESHOLD_S`. Bez etykiet — wykres liczby
+krzywe PR i ROC po `TTC_DANGER_THRESHOLD_S`. Bez etykiet — wykres liczby
 kolizji vs próg.
 
 **Z rekompilacją** — dowolny parametr makro:
