@@ -1,4 +1,4 @@
-# DVS Obstacle Avoidance: Looming Detection and Time-to-Collision on a Raspberry Pi 5.......
+# DVS Obstacle Avoidance: Looming Detection and Time-to-Collision on a Raspberry Pi 5
 
 [![Platform](https://img.shields.io/badge/Platform-Raspberry%20Pi%205-red.svg)](https://www.raspberrypi.com/)
 [![Sensor](https://img.shields.io/badge/Sensor-Prophesee%20GenX320-blue.svg)](https://www.prophesee.ai/)
@@ -8,14 +8,14 @@
 
 > **Course Project**: Dynamic Vision Sensors  
 > **Authors**: [Paweł Jerzyna](https://github.com/pjerzyna), Piotr Grzyb, Marcin Dworak  
-> **Method**: > **Method**: Event-based looming detection with kinematic TTC estimation, implemented from scratch in C++17 with ARM NEON SIMD
+> **Method**: Event-based looming detection with kinematic TTC estimation, implemented from scratch in C++17 with ARM NEON SIMD
 
 
 ## 📌 Executive Summary / TL;DR
 
 This repository delivers a bio-inspired optical avoidance system designed for resource-constrained edge hardware (Raspberry Pi 5) coupled with a neuromorphic event-based camera (Prophesee GenX320). This code for now is working only with recorded videos, launching it in real-time doesn't work. 
 
-> **⚠️ Project status:** the detection pipeline is validated offline. All benchmarks below were measured on real sensor recordings replayed on the target hardware.
+> **⚠️** Live camera capture on the Raspberry Pi 5 is not yet operational. The detection pipeline is validated offline. All benchmarks below were measured on real sensor recordings replayed on the target hardware. **⚠️**
 
 Dense DNNs and Contrast Maximization saturate the CPU and desynchronization the event-stream on edge devices. Instead, this C++ pipeline mimics the looming detection and escape reflexes of flying insects. It extracts dynamic 2D bounding boxes via ARM NEON SIMD and evaluates a kinematic Time-to-Collision (TTC) surface expansion metric.
 
@@ -39,54 +39,13 @@ Dense DNNs and Contrast Maximization saturate the CPU and desynchronization the 
 
 📄 Performance metrics and analysis of computational and parametric complexity: **[docs/performance.md](docs/performance.md)**
 
----
 
 ## 🏗️ System Architecture & Data Pipeline
 
 The pipeline processes asynchronous `EVT3` event streams $(x, y, p, t)$ through six decoupled C++ processing modules managed by a single `DetectionPipeline` engine.
 
-+--------------------------+
-| Prophesee GenX320 Sensor | (320x320 Asynchronous EVT3 Stream)
-+--------------------------+
-|
-v
-+--------------------------+      +-----------------------+
-| Metavision SDK Driver    | ---> | RAW Stream Recording  | (Optional Disk Logging)
-+--------------------------+      +-----------------------+
-|
-v
-+--------------------------+      +-----------------------+
-| Spatiotemporal Filter    | ---> | Filtered Recording    | (3 ms Rolling Window, 4-Way Neighborhood)
-+--------------------------+      +-----------------------+
-|
-v
-+--------------------------+
-| Frame Slicer             | (Partitioning events into DT = 10 ms slices)
-+--------------------------+
-|
-v
-+--------------------------+
-| Adaptive Calibration     | (Dynamic background activity estimation over first 30 slices)
-+--------------------------+
-|
-v
-+--------------------------+
-| Geometric Tracker (SIMD) | (Horizontal sectoring: Left/Central/Right, Bounding Box & Centroid)
-+--------------------------+
-|
-v
-+--------------------------+
-| Kinematic TTC Estimator  | (60 ms sliding window area growth rate A_dot -> TTC calculation)
-+--------------------------+
-|
-v
-+--------------------------+      +-----------------------+
-| Collision Decision Engine| ---> | Live OpenCV Replay    | (Validation mode: replay_viewer)
-| Terminal Telemetry / Alert|      +-----------------------+
-+--------------------------+
+![Obstacle detection and TTC collision alert on Raspberry Pi 5](docs/media/high-level-diagram.png)
 
-
----
 
 ## 📐 Mathematical Foundations
 
@@ -100,7 +59,7 @@ An event survives filtering if and only if:
 $$\sum_{k \in \mathcal{N}(x_i, y_i)} \mathbb{I}(k) \ge N_{\text{min}} \quad (N_{\text{min}} = 1)$$
 
 ### 2. Vectorized Geometric Feature Tracking
-Surviving events are mapped across three spatial sectors: **Left** ($x \le 106$), **Central** ($107 \le x \le 213$), and **Right** ($x \ge 214$). For the sector with maximum event count, spatial bounds ($x_{\text{min}}, x_{\text{max}}, y_{\text{min}}, y_{\text{max}}$) and arithmetic centroid $c(t)$ are calculated in a single pass parallelized via **ARM NEON SIMD**:
+Surviving events are mapped across three spatial sectors: Left ($x \le 106$), Central ($107 \le x \le 213$), and Right ($x \ge 214$). For the sector with maximum event count, spatial bounds ($x_{\text{min}}, x_{\text{max}}, y_{\text{min}}, y_{\text{max}}$) and arithmetic centroid $c(t)$ are calculated in a single pass parallelized via ARM NEON SIMD:
 
 $$c(t) = \left( \frac{1}{n}\sum_{i=1}^{n} x_i, \; \frac{1}{n}\sum_{i=1}^{n} y_i \right), \quad \Delta c(t) = c(t) - c(t - 1)$$
 
@@ -113,7 +72,6 @@ A safety-critical collision alert is triggered whenever:
 
 $$TTC_s(t) < \tau_{\text{danger}} \quad (\tau_{\text{danger}} = 0.45\text{ s})$$
 
----
 
 ## 📊 Performance Benchmarks & Comparison
 
